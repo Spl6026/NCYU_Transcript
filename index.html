@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form>
+        <label for="stuno">學號：
+        <input type="text" id="stuno" class="stuno">
+        </label>
+        <input type="button" value="送出" class="submit">
+    </form>
+</body>
+<script>
+    var submit = document.querySelector(".submit");
+    var FileName = "test.pdf";
+
+    submit.addEventListener('click', function () {
+        var stuno = document.querySelector(".stuno");
+        var json = {};
+        json.StudentId = stuno.value;
+
+        fetch('http://localhost:55082/api/generate',{
+            method: 'POST',
+            headers: {'Content-type': 'application/json'},
+            body: JSON.stringify(json)
+        }).then(function (response) {
+            var FileNameEncode = response.headers.get('Content-Disposition').split('filename=')[1];
+            FileName = decodeURIComponent(FileNameEncode);
+            return response.blob();
+        }).then(function (blob){
+            var url = window.URL.createObjectURL(blob);
+            var a = document.createElement('a');
+            a.href = url;
+            a.download =  FileName;
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+        }).catch(oError => {
+            alert(oError);
+        });
+    })
+</script>
+</html>
