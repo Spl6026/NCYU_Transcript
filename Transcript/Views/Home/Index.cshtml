@@ -11,8 +11,10 @@
     <title>Index</title>
 </head>
 <body>
-    <div>
-        <a href="~/Home/Generate">ok</a>
-    </div>
+    <form method="post" action="~/Home/SQLGet">
+        <label for="id">學號: </label>
+        <input type="text" name="id" />
+        <input type="submit" value="submit" />
+    </form>
 </body>
 </html>

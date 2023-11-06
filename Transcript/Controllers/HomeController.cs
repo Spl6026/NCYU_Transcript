@@ -5,49 +5,94 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
+using System.Globalization;
+using System.Data.SqlClient;
 
 namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
     {
+        public static string TW2AD(string tw)
+        {
+            string TwYear = tw.Substring(0, 3);
+            string Date = tw.Substring(3);
+            string ad = (int.Parse(TwYear) + 1911).ToString() + Date;
+            return ad;
+        }
         // GET: Home
         public ActionResult Index()
         {
             return View();
         }
-        public FileResult Generate()
+
+        public ActionResult SQLGet(FormCollection form)
+        {
+            string StudentId = form["id"];
+            List<Models.Student> stu = new List<Models.Student>();
+            string connectionString = "Data Source=SPL\\SQLEXPRESS;Initial Catalog=Test_ncyu_dev;Persist Security Info=True;User ID=ccadmsup;Password=ccap2dev98";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string cmd = "SELECT [ename], [cname], [birthday], [entrym], [degrenam], [graddat], [deptenam], [colenam] FROM [Test_ncyu_dev].[dbo].[stufile] JOIN [Test_ncyu_dev].[dbo].[sclperson] ON [Test_ncyu_dev].[dbo].[stufile].[idno] = [Test_ncyu_dev].[dbo].[sclperson].[idno] JOIN [Test_ncyu_dev].[dbo].[pubsec] ON [Test_ncyu_dev].[dbo].[stufile].[deptno] = [Test_ncyu_dev].[dbo].[pubsec].[deptno] JOIN [Test_ncyu_dev].[dbo].[pubdep] ON [Test_ncyu_dev].[dbo].[stufile].[deptno] = [Test_ncyu_dev].[dbo].[pubdep].[deptno] JOIN [Test_ncyu_dev].[dbo].[pubcol] ON [Test_ncyu_dev].[dbo].[pubcol].[colno] = [Test_ncyu_dev].[dbo].[pubdep].[colno] WHERE [stuno] = '" + StudentId + "'";
+                using (SqlCommand command = new SqlCommand(cmd, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            stu.Add(new Models.Student()
+                            {
+                                Name = reader.IsDBNull(0) ? reader.GetString(1) : reader.GetString(0) + " ( " + reader.GetString(1) + " )",
+                                Birth = DateTime.ParseExact(TW2AD(reader.GetString(2)), "yyyyMMdd", CultureInfo.InvariantCulture).ToString("MMMM dd, yyyy", new CultureInfo("en-us")),
+                                Enrolled = DateTime.ParseExact(TW2AD(reader.GetString(3)), "yyyyMM", CultureInfo.InvariantCulture).ToString("MMMM, yyyy", new CultureInfo("en-us")),
+                                DegreeConferred = reader.IsDBNull(5) ? null : reader.GetString(4),
+                                DateConferred = reader.IsDBNull(5) ? null : DateTime.ParseExact(TW2AD(reader.GetString(5)), "yyyyMMdd", CultureInfo.InvariantCulture).ToString("MMMM, yyyy", new CultureInfo("en-us")),
+                                Department = reader.GetString(6),
+                                College = reader.GetString(7),
+                                Issued = DateTime.Now.ToString("MMMM dd, yyyy", new CultureInfo("en-us")),
+                            });
+                        }
+                    }
+                }
+            }
+            return Generate(stu, StudentId);
+        }
+
+        public FileResult Generate(List<Models.Student> stu, string StudentId)
         {
             FastReport.Utils.Config.WebMode = true;
             Report rep = new Report();
             string path = Server.MapPath("~/test.frx");
             rep.Load(path);
 
-            List<Models.Employee> emp = new List<Models.Employee>();
-            List<Models.Employeesub> empsub = new List<Models.Employeesub>();
+            List<Models.Courses> course = new List<Models.Courses>();
 
-            emp.Add(new Models.Employee()
-            {
-                Name = "KUM YU HENG (甘宇恆) ",
-                Birth = "June II, 1999",
-                Enrolled = "September, 2018 ",
-                DegreeConferred = " Bachelor of Science ",
-                DateConferred = "June. 2022 ",
-                Department = "Department of Computer Science and Information Engineering ",
-                College = "College of Science and Engineering ",
-                Issued = "November 01,2022",
-            });
             int i = 0;
-            for ( i = 0; i < 15; i++) {
-               
-                empsub.Add(new Models.Employeesub()
-                {
+            for ( i = 0; i < 10; i++) {
 
-                    sub = "Math"+i.ToString(),
-                    sco = 70.ToString(),
+                course.Add(new Models.Courses()
+                {
+                    CourseId = i.ToString(),
+                    Course = "Math" + i.ToString(),
+                    Credit = 2,
+                    Grade = 70,
+                    DataYear = 2023,
+                    DataSemester = 1,
                 });
             }
-            rep.RegisterData(emp, "EmployeeRef");
-            rep.RegisterData(empsub, "EmployeesubRef");
+            for (; i < 20; i++) {
+                course.Add(new Models.Courses()
+                {
+                    CourseId = i.ToString(),
+                    Course = "Math" + i.ToString(),
+                    Credit = 2,
+                    Grade = 70,
+                    DataYear = 2023,
+                    DataSemester = 2,
+                });
+            }
+            rep.RegisterData(stu, "StudentRef");
+            rep.RegisterData(course, "CoursesRef");
             if (rep.Report.Prepare())
             {
                 
@@ -60,7 +105,7 @@ namespace WebApplication1.Controllers
                 rep.Dispose();
                 pdfExport.Dispose();
                 ms.Position = 0;
-                return File(ms, "application/pdf", "myreport.pdf");
+                return File(ms, "application/pdf", DateTime.Now.ToString("yyyyMMdd_") + StudentId + ".pdf");
             }
             else
             {
