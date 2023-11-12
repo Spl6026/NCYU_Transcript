@@ -9,12 +9,17 @@ using System.Runtime.CompilerServices;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.SqlClient;
+using System.Diagnostics.Eventing.Reader;
 
 namespace Transcript.Models
 {
     public class JSON
     {
         public string StudentId { get; set; }
+        public int syearStart { get; set; }
+        public int semStart { get; set; }
+        public int syearEnd { get; set; }
+        public int semEnd { get; set; }
     }
 
     public class Student
@@ -61,7 +66,7 @@ namespace Transcript.Models
             return ad;
         }
 
-        public Tuple<List<Models.Student>, List<Models.Courses>> SQLGet(string StudentId)
+        public Tuple<List<Models.Student>, List<Models.Courses>> SQLGet(string StudentId, int syearStart, int semStart, int syearEnd, int semEnd)
         {
             List<Models.Student> stu = new List<Models.Student>();
             List<Models.Courses> course = new List<Models.Courses>();
@@ -95,7 +100,14 @@ namespace Transcript.Models
                         }
                     }
                 }
-                cmd = "SELECT [englishco], [credit], [pass], [totalscore], [Test_ncyu_dev].[dbo].[selstch].[syear], [Test_ncyu_dev].[dbo].[selstch].[sem], [rgcrd], [scoavg], [total_score] FROM [Test_ncyu_dev].[dbo].[selstch] JOIN [Test_ncyu_dev].[dbo].[crscourse] ON [Test_ncyu_dev].[dbo].[selstch].[cono] = [Test_ncyu_dev].[dbo].[crscourse].[cono] LEFT JOIN [Test_ncyu_dev].[dbo].[con_behavior] ON [Test_ncyu_dev].[dbo].[selstch].[syear] = [Test_ncyu_dev].[dbo].[con_behavior].[syear] AND [Test_ncyu_dev].[dbo].[selstch].[sem] = [Test_ncyu_dev].[dbo].[con_behavior].[sem] AND [Test_ncyu_dev].[dbo].[selstch].[stuno] = [Test_ncyu_dev].[dbo].[con_behavior].[stuno]  LEFT JOIN [Test_ncyu_dev].[dbo].[selstchf] ON [Test_ncyu_dev].[dbo].[selstch].[syear] = [Test_ncyu_dev].[dbo].[selstchf].[syear] AND [Test_ncyu_dev].[dbo].[selstch].[sem] = [Test_ncyu_dev].[dbo].[selstchf].[sem] AND [Test_ncyu_dev].[dbo].[selstch].[stuno] = [Test_ncyu_dev].[dbo].[selstchf].[stuno] WHERE [Test_ncyu_dev].[dbo].[selstch].[stuno] = '" + StudentId + "' ORDER BY [syear], [sem]";
+                string Change = "";
+                if (syearStart == syearEnd)
+                    Change = "' AND ([Test_ncyu_dev].[dbo].[selstch].[syear] = " + syearStart + "AND [Test_ncyu_dev].[dbo].[selstch].[sem] >= " + semStart + "AND [Test_ncyu_dev].[dbo].[selstch].[sem] <= " + semEnd + ")";
+                
+                else
+                    Change = "' AND (([Test_ncyu_dev].[dbo].[selstch].[syear] = " + syearStart + " AND [Test_ncyu_dev].[dbo].[selstch].[sem] >= " + semStart + ") OR ([Test_ncyu_dev].[dbo].[selstch].[syear] > " + syearStart + " AND [Test_ncyu_dev].[dbo].[selstch].[syear] < " + syearEnd + ") OR ([Test_ncyu_dev].[dbo].[selstch].[syear] = " + syearEnd + " AND [Test_ncyu_dev].[dbo].[selstch].[sem] <= " + semEnd + "))";     
+                
+                cmd = "SELECT [englishco], [credit], [pass], [totalscore], [Test_ncyu_dev].[dbo].[selstch].[syear], [Test_ncyu_dev].[dbo].[selstch].[sem], [rgcrd], [scoavg], [total_score] FROM [Test_ncyu_dev].[dbo].[selstch] JOIN [Test_ncyu_dev].[dbo].[crscourse] ON [Test_ncyu_dev].[dbo].[selstch].[cono] = [Test_ncyu_dev].[dbo].[crscourse].[cono] LEFT JOIN [Test_ncyu_dev].[dbo].[con_behavior] ON [Test_ncyu_dev].[dbo].[selstch].[syear] = [Test_ncyu_dev].[dbo].[con_behavior].[syear] AND [Test_ncyu_dev].[dbo].[selstch].[sem] = [Test_ncyu_dev].[dbo].[con_behavior].[sem] AND [Test_ncyu_dev].[dbo].[selstch].[stuno] = [Test_ncyu_dev].[dbo].[con_behavior].[stuno]  LEFT JOIN [Test_ncyu_dev].[dbo].[selstchf] ON [Test_ncyu_dev].[dbo].[selstch].[syear] = [Test_ncyu_dev].[dbo].[selstchf].[syear] AND [Test_ncyu_dev].[dbo].[selstch].[sem] = [Test_ncyu_dev].[dbo].[selstchf].[sem] AND [Test_ncyu_dev].[dbo].[selstch].[stuno] = [Test_ncyu_dev].[dbo].[selstchf].[stuno] WHERE [Test_ncyu_dev].[dbo].[selstch].[stuno] = '" + StudentId + Change + " ORDER BY [syear], [sem]";
                 using (SqlCommand command = new SqlCommand(cmd, connection))
                 {
                     using (SqlDataReader reader = command.ExecuteReader())

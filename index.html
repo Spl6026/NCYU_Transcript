@@ -9,6 +9,28 @@
         <label for="stuno">學號：
         <input type="text" id="stuno" class="stuno">
         </label>
+        <label for="syearStart">學年：
+            <input type="text" id="syearStart" class="syearStart">
+        </label>
+        <label for="syearEnd">~
+            <input type="text" id="syearEnd" class="syearEnd">
+        </label>
+        <label>
+            學期：
+            <select class="semStart">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+            </select>
+        </label>
+        <label>
+            ~
+            <select class="semEnd">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+            </select>
+        </label>
         <input type="button" value="送出" class="submit">
     </form>
 </body>
@@ -18,8 +40,16 @@
 
     submit.addEventListener('click', function () {
         var stuno = document.querySelector(".stuno");
+        var syearStart = document.querySelector(".syearStart");
+        var syearEnd = document.querySelector(".syearEnd");
+        var semStart = document.querySelector(".semStart");
+        var semEnd = document.querySelector(".semEnd");
         var json = {};
         json.StudentId = stuno.value;
+        json.syearStart = syearStart.value;
+        json.semStart = semStart.value;
+        json.syearEnd = syearEnd.value;
+        json.semEnd = semEnd.value;
 
         fetch('http://localhost:55082/api/generate',{
             method: 'POST',

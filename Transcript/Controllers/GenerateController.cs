@@ -27,8 +27,12 @@ namespace Transcript.Controllers
             }
             var JsonObject = JsonConvert.DeserializeObject<JSON>(data.ToString());
             string StudentId = JsonObject.StudentId;
+            int syearStart = JsonObject.syearStart;
+            int semStart = JsonObject.semStart;
+            int syearEnd = JsonObject.syearEnd;
+            int semEnd = JsonObject.semEnd;
             DataBase link = new DataBase();
-            Tuple<List<Student>, List<Courses>> tuple = link.SQLGet(StudentId);
+            Tuple<List<Student>, List<Courses>> tuple = link.SQLGet(StudentId, syearStart, semStart, syearEnd, semEnd);
             List<Student> stu = tuple.Item1;
             List<Courses> courses = tuple.Item2;
             FastReport.Utils.Config.WebMode = true;
