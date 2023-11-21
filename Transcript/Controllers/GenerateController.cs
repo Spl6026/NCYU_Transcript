@@ -15,6 +15,7 @@ using Newtonsoft.Json;
 using FastReport.Utils.Json;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
+using System.IO;
 
 namespace Transcript.Controllers
 {
@@ -27,20 +28,24 @@ namespace Transcript.Controllers
             }
             var JsonObject = JsonConvert.DeserializeObject<JSON>(data.ToString());
             string StudentId = JsonObject.StudentId;
-            int syearStart = JsonObject.syearStart;
-            int semStart = JsonObject.semStart;
             int syearEnd = JsonObject.syearEnd;
             int semEnd = JsonObject.semEnd;
+            bool Isrank = JsonObject.Isrank;
+            string path = HttpContext.Current.Server.MapPath("~");
             DataBase link = new DataBase();
-            Tuple<List<Student>, List<Courses>> tuple = link.SQLGet(StudentId, syearStart, semStart, syearEnd, semEnd);
+            Tuple<List<Student>, List<Courses>> tuple = link.SQLGet(StudentId, syearEnd, semEnd, Isrank);
             List<Student> stu = tuple.Item1;
             List<Courses> courses = tuple.Item2;
+            List<Sign> sign = new List<Sign>();
             FastReport.Utils.Config.WebMode = true;
             Report rep = new Report();
-            string path = HttpContext.Current.Server.MapPath("~/test.frx");
-            rep.Load(path);
+
+            sign.Add(new Sign(Path.Combine(path, "img")));
+
+            rep.Load(path + "test.frx");
             rep.RegisterData(stu, "StudentRef");
             rep.RegisterData(courses, "CoursesRef");
+            rep.RegisterData(sign, "SignRef");
             if (rep.Report.Prepare())
             {
                 FastReport.Export.PdfSimple.PDFSimpleExport pdfExport = new FastReport.Export.PdfSimple.PDFSimpleExport();
