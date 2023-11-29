@@ -19,7 +19,11 @@ namespace Transcript.Models
 {
     public class JSON
     {
+        public string DeptId { get; set; }
         public string StudentId { get; set; }
+        public int Secno { get; set; }
+        public int Grade { get; set; }
+        public int Clacod { get; set; }
         public int syearEnd { get; set; }
         public int semEnd { get; set; }
         public bool Isrank { get; set; }
@@ -37,9 +41,15 @@ namespace Transcript.Models
         public string Issued { get; set; }
         public decimal Score { get; set; }
         public decimal Credits { get; set; }
-        //public decimal Rank { get; set; }
-        //public decimal Class { get; set; }
-        public string Percent { get; set; }
+        public decimal Rank { get; set; }
+        public decimal Class { get; set; }
+        public string Percent
+        {
+            get
+            {
+                return $"{Rank}/{Class} ({(Rank / (Class == 0 ? 1 : Class)).ToString("0.00%")})";
+            }
+        }
         public decimal GPA { get; set; }
         public bool IsRank { get; set; }
     }
@@ -78,52 +88,15 @@ namespace Transcript.Models
             return ad;
         }
 
-        public Tuple<decimal, decimal, string, decimal> Grades(List<Models.Courses> course) 
-        {
-            decimal Scores = 0;
-            decimal suCredits = 0;
-            decimal rgCredits = 0;
-            string Percent = "0/0 (0.00%)";
-            decimal GPA = 0;
-            
-            //Rank + "/" + Class + "(" + (Rank / (Class == 0 ? 1 : Class)).ToString("0.00%") + ")";
-            
-            foreach (var item in course)
-            {
-                Scores += item.Grade * item.Credit;
-
-                suCredits += item.Credit;
-
-                if (item.Grade >= 60)
-                    rgCredits += item.Credit;
-
-                if(item.Grade >= 80) 
-                    GPA += 4 * item.Credit;
-                
-                else if(item.Grade >= 70) 
-                    GPA += 3 * item.Credit;
-                
-                else if(item.Grade >= 60)
-                    GPA += 2 * item.Credit;
-                
-                else if(item.Grade >= 50)
-                    GPA += 1 * item.Credit;
-               
-            }
-            return Tuple.Create(Math.Round(Scores / suCredits, 2), rgCredits, Percent, Math.Round(GPA / suCredits, 2));
-        }
-
-        public Tuple<List<Models.Student>, List<Models.Courses>> SQLGet(string StudentId, int syearEnd, int semEnd, bool Isrank)
+        public Tuple<List<Models.Student>, List<Models.Courses>> SQLGet(string StudentId, int syearEnd, int semEnd, bool Isrank, string connectionString)
         {
             List<Models.Student> stu = new List<Models.Student>();
             List<Models.Courses> course = new List<Models.Courses>();
-            string connectionString = "Data Source=SPL\\SQLEXPRESS;Initial Catalog=Test_ncyu_dev;Persist Security Info=True;User ID=ccadmsup;Password=ccap2dev98";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 
-                string Year = "'AND (([Test_ncyu_dev].[dbo].[selstch].[syear] < " + syearEnd + ") OR ([Test_ncyu_dev].[dbo].[selstch].[syear] = " + syearEnd + " AND [Test_ncyu_dev].[dbo].[selstch].[sem] <= " + semEnd + "))";
-                string cmd = "SELECT [englishco], [credit], [pass], [totalscore], [Test_ncyu_dev].[dbo].[selstch].[syear], [Test_ncyu_dev].[dbo].[selstch].[sem], [rgcrd], [scoavg], [total_score] FROM [Test_ncyu_dev].[dbo].[selstch] JOIN [Test_ncyu_dev].[dbo].[crscourse] ON [Test_ncyu_dev].[dbo].[selstch].[cono] = [Test_ncyu_dev].[dbo].[crscourse].[cono] LEFT JOIN [Test_ncyu_dev].[dbo].[con_behavior] ON [Test_ncyu_dev].[dbo].[selstch].[syear] = [Test_ncyu_dev].[dbo].[con_behavior].[syear] AND [Test_ncyu_dev].[dbo].[selstch].[sem] = [Test_ncyu_dev].[dbo].[con_behavior].[sem] AND [Test_ncyu_dev].[dbo].[selstch].[stuno] = [Test_ncyu_dev].[dbo].[con_behavior].[stuno]  LEFT JOIN [Test_ncyu_dev].[dbo].[selstchf] ON [Test_ncyu_dev].[dbo].[selstch].[syear] = [Test_ncyu_dev].[dbo].[selstchf].[syear] AND [Test_ncyu_dev].[dbo].[selstch].[sem] = [Test_ncyu_dev].[dbo].[selstchf].[sem] AND [Test_ncyu_dev].[dbo].[selstch].[stuno] = [Test_ncyu_dev].[dbo].[selstchf].[stuno] WHERE [Test_ncyu_dev].[dbo].[selstch].[stuno] = '" + StudentId + Year + " ORDER BY [syear], [sem]";
+                string cmd = $"SELECT [englishco], [credit], [pass], [totalscore], [Test_ncyu_dev].[dbo].[selstch].[syear], [Test_ncyu_dev].[dbo].[selstch].[sem], [rgcrd], [scoavg], [total_score] FROM [Test_ncyu_dev].[dbo].[selstch] JOIN [Test_ncyu_dev].[dbo].[crscourse] ON [Test_ncyu_dev].[dbo].[selstch].[cono] = [Test_ncyu_dev].[dbo].[crscourse].[cono] LEFT JOIN [Test_ncyu_dev].[dbo].[con_behavior] ON [Test_ncyu_dev].[dbo].[selstch].[syear] = [Test_ncyu_dev].[dbo].[con_behavior].[syear] AND [Test_ncyu_dev].[dbo].[selstch].[sem] = [Test_ncyu_dev].[dbo].[con_behavior].[sem] AND [Test_ncyu_dev].[dbo].[selstch].[stuno] = [Test_ncyu_dev].[dbo].[con_behavior].[stuno]  LEFT JOIN [Test_ncyu_dev].[dbo].[selstchf] ON [Test_ncyu_dev].[dbo].[selstch].[syear] = [Test_ncyu_dev].[dbo].[selstchf].[syear] AND [Test_ncyu_dev].[dbo].[selstch].[sem] = [Test_ncyu_dev].[dbo].[selstchf].[sem] AND [Test_ncyu_dev].[dbo].[selstch].[stuno] = [Test_ncyu_dev].[dbo].[selstchf].[stuno] WHERE [Test_ncyu_dev].[dbo].[selstch].[stuno] = '{StudentId}' AND (([Test_ncyu_dev].[dbo].[selstch].[syear] < {syearEnd}) OR ([Test_ncyu_dev].[dbo].[selstch].[syear] = {syearEnd} AND [Test_ncyu_dev].[dbo].[selstch].[sem] <= {semEnd})) ORDER BY [syear], [sem]";
                 using (SqlCommand command = new SqlCommand(cmd, connection))
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
@@ -148,8 +121,7 @@ namespace Transcript.Models
                         }
                     }
                 }
-                Tuple<decimal, decimal, string, decimal> tuple = Grades(course);
-                cmd = "SELECT [ename], [cname], [birthday], [entrym], [degrenam], [graddat], [deptenam], [colenam] FROM [Test_ncyu_dev].[dbo].[stufile] JOIN [Test_ncyu_dev].[dbo].[sclperson] ON [Test_ncyu_dev].[dbo].[stufile].[idno] = [Test_ncyu_dev].[dbo].[sclperson].[idno] JOIN [Test_ncyu_dev].[dbo].[pubsec] ON [Test_ncyu_dev].[dbo].[stufile].[deptno] = [Test_ncyu_dev].[dbo].[pubsec].[deptno] JOIN [Test_ncyu_dev].[dbo].[pubdep] ON [Test_ncyu_dev].[dbo].[stufile].[deptno] = [Test_ncyu_dev].[dbo].[pubdep].[deptno] JOIN [Test_ncyu_dev].[dbo].[pubcol] ON [Test_ncyu_dev].[dbo].[pubcol].[colno] = [Test_ncyu_dev].[dbo].[pubdep].[colno] LEFT JOIN [Test_ncyu_dev].[dbo].[selstugracrd] ON [Test_ncyu_dev].[dbo].[stufile].[stuno] = [Test_ncyu_dev].[dbo].[selstugracrd].[stuno] WHERE [Test_ncyu_dev].[dbo].[stufile].[stuno] = '" + StudentId + "'";
+                cmd = "SELECT [ename], [cname], [birthday], [entrym], [degrenam], [graddat], [deptenam], [colenam], [scoavg], [accrgcrd], [clspgnsort], [allman], [accgpa] FROM [Test_ncyu_dev].[dbo].[stufile] JOIN [Test_ncyu_dev].[dbo].[sclperson] ON [Test_ncyu_dev].[dbo].[stufile].[idno] = [Test_ncyu_dev].[dbo].[sclperson].[idno] JOIN [Test_ncyu_dev].[dbo].[pubsec] ON [Test_ncyu_dev].[dbo].[stufile].[deptno] = [Test_ncyu_dev].[dbo].[pubsec].[deptno] JOIN [Test_ncyu_dev].[dbo].[pubdep] ON [Test_ncyu_dev].[dbo].[stufile].[deptno] = [Test_ncyu_dev].[dbo].[pubdep].[deptno] JOIN [Test_ncyu_dev].[dbo].[pubcol] ON [Test_ncyu_dev].[dbo].[pubcol].[colno] = [Test_ncyu_dev].[dbo].[pubdep].[colno] LEFT JOIN [Test_ncyu_dev].[dbo].[selstugracrd] ON [Test_ncyu_dev].[dbo].[stufile].[stuno] = [Test_ncyu_dev].[dbo].[selstugracrd].[stuno] WHERE [Test_ncyu_dev].[dbo].[stufile].[stuno] = '" + StudentId + "'";
                 using (SqlCommand command = new SqlCommand(cmd, connection))
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
@@ -166,10 +138,11 @@ namespace Transcript.Models
                                 Department = reader.GetString(6),
                                 College = reader.GetString(7),
                                 Issued = DateTime.Now.ToString("MMMM dd, yyyy", new CultureInfo("en-us")),
-                                Score = tuple.Item1,
-                                Credits = tuple.Item2,
-                                Percent = tuple.Item3,
-                                GPA = tuple.Item4,
+                                Score = reader.IsDBNull(8) ? 0 : reader.GetDecimal(8),
+                                Credits = reader.IsDBNull(9) ? 0 : reader.GetDecimal(9),
+                                Rank = reader.IsDBNull(10) ? 0 : reader.GetDecimal(10),
+                                Class = reader.IsDBNull(11) ? 0 : reader.GetDecimal(11),
+                                GPA = reader.IsDBNull(12) ? 0 : reader.GetDecimal(12),
                                 IsRank = Isrank,
                             }); ;
                         }
