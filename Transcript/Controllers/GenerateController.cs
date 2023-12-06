@@ -27,7 +27,7 @@ namespace Transcript.Controllers
 {
     public class GenerateController : ApiController
     {
-        byte[] GeneratePDF(Tuple<List<Models.Student>, List<Models.Courses>> tuple, string StudentId)
+        byte[] GeneratePDF(Tuple<List<Student>, List<Courses>> tuple, string StudentId)
         {
             string path = HttpContext.Current.Server.MapPath("~");
             List<Student> stu = tuple.Item1;
@@ -49,7 +49,7 @@ namespace Transcript.Controllers
                 pdfExport.Subject = "Transcript";
                 pdfExport.Title = StudentId;
                 pdfExport.Author = "NCYU";
-                System.IO.MemoryStream ms = new System.IO.MemoryStream();
+                MemoryStream ms = new MemoryStream();
                 rep.Report.Export(pdfExport, ms);
                 rep.Dispose();
                 pdfExport.Dispose();
@@ -57,7 +57,7 @@ namespace Transcript.Controllers
             }
             else
             {
-                System.Diagnostics.Debug.WriteLine("MyAction 已被執行");
+                Debug.WriteLine("MyAction 已被執行");
                 return null;
             }
         }
@@ -79,7 +79,7 @@ namespace Transcript.Controllers
             bool Isrank = JsonObject.Isrank;
             List<string> StudentIds = new List<string>();
             DataBase link = new DataBase();
-            string connectionString = "Data Source=SPL\\SQLEXPRESS;Initial Catalog=Test_ncyu_dev;Persist Security Info=True;User ID=ccadmsup;Password=ccap2dev98";
+            string connectionString = System.Web.Configuration.WebConfigurationManager.ConnectionStrings["DefaultDbConnection"].ConnectionString;
 
             if (DeptId != null) //dept
             {

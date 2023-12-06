@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace Calculate.Models
+﻿namespace Calculate.Models
 {
     public class JSON
     {

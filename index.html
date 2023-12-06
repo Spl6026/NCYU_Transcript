@@ -17,13 +17,13 @@
         </label>
         <section class="dept_checked">
             <label for="secno">組別：
-                <input type="text" id="secno" class="secno" placeholder="0">
+                <input type="text" id="secno" class="secno" value="0" placeholder="0">
             </label>
             <label for="grade">年級：
                 <input type="text" id="grade" class="grade">
             </label>
             <label for="clacod">班級：
-                <input type="text" id="clacod" class="clacod" placeholder="1">
+                <input type="text" id="clacod" class="clacod" value="1" placeholder="1">
             </label>
         </section>
         <label for="syearEnd">學年：
@@ -82,7 +82,7 @@
         json.semEnd = semEnd.value;
         json.Isrank = Isrank.checked;
 
-        fetch('http://localhost:44371/api/Home',{
+        fetch('http://localhost:44371/api/Calculate',{
             method: 'POST',
             headers: {'Content-type': 'application/json'},
             body: JSON.stringify(json)
