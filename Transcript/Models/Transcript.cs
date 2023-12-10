@@ -2,7 +2,7 @@
 
 namespace Transcript.Models
 {
-    public class JSON
+    public class Transcript_JSON
     {
         public string DeptId { get; set; }
         public string StudentId { get; set; }

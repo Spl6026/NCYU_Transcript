@@ -163,7 +163,7 @@ namespace Calculate.Models
             }
         }
 
-        public void CheckSelstugracrd(List<RegSem> regsems, bool Isrank, string connectionString)
+        public void CheckSelstugracrd(List<RegSem> regsems, bool Isrank, bool rank_cd, string connectionString)
         {
             RegSem regsem = regsems.Last();
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -171,7 +171,6 @@ namespace Calculate.Models
                 connection.Open();
 
                 List<Student> students = new List<Student>();
-                bool rank_cd = true;
                 string cmd = $"SELECT [stuno] FROM [Test_ncyu_dev].[dbo].[regstusem] WHERE [syear] = {regsem.syear} AND [sem] = {(regsem.sem > 2 ? 2 : regsem.sem)} AND [deptno] = '{regsem.deptno}' AND [secno] = {regsem.secno} AND [grade] = {regsem.grade} AND [clacod] = {regsem.clacod} AND [stateno] = 01";
                 using (SqlCommand command = new SqlCommand(cmd, connection))
                 {

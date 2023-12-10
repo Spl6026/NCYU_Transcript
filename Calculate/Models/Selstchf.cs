@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
+using System.Linq;
 
 namespace Calculate.Models
 {
@@ -151,29 +152,33 @@ namespace Calculate.Models
             }
         }
 
-        public void CheckSelstchf(List<RegSem> regsems, bool Isrank, string connectionString) //做該系所Selstchf的insert&rank
+        public bool CheckSelstchf(List<RegSem> regsems, bool Isrank, string connectionString) //做該系所Selstchf的insert&rank
         {
+            bool rank_cd_all = true;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                foreach (var item in regsems)
+                List<Student> students = new List<Student>();
+                RegSem regsem = regsems.Last();
+                string cmd = $"SELECT [stuno] FROM [Test_ncyu_dev].[dbo].[regstusem] WHERE [syear] = {regsem.syear} AND [sem] = {(regsem.sem > 2 ? 2 : regsem.sem)} AND [deptno] = '{regsem.deptno}' AND [secno] = {regsem.secno} AND [grade] = {regsem.grade} AND [clacod] = {regsem.clacod} AND [stateno] = 01";
+                using (SqlCommand command = new SqlCommand(cmd, connection))
                 {
-                    List<Student> students = new List<Student>();
-                    bool rank_cd = true;
-                    string cmd = $"SELECT [stuno] FROM [Test_ncyu_dev].[dbo].[regstusem] WHERE [syear] = {item.syear} AND [sem] = {(item.sem > 2 ? 2 : item.sem)} AND [deptno] = '{item.deptno}' AND [secno] = {item.secno} AND [grade] = {item.grade} AND [clacod] = {item.clacod} AND [stateno] = 01";
-                    using (SqlCommand command = new SqlCommand(cmd, connection))
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        while (reader.Read())
                         {
-                            while (reader.Read())
+                            students.Add(new Student()
                             {
-                                students.Add(new Student()
-                                {
-                                    stuno = reader.GetString(0)
-                                });
-                            }
+                                stuno = reader.GetString(0)
+                            });
                         }
                     }
+                }
+                foreach (var item in regsems)
+                {
+                    
+                    bool rank_cd = true;
+                    
                     if (item.sem == 3) //第三學期
                     {
                         foreach (var stu in students)
@@ -231,12 +236,14 @@ namespace Calculate.Models
                         }
                     }
                     Debug.WriteLine(("selstchf_rank_cd:", rank_cd));
+                    rank_cd_all = rank_cd_all && rank_cd;
                     if ((Isrank && !rank_cd) && item.sem != 3)
                     {
                         RankSelstchf(item.syear, item.sem, item.deptno, item.secno, item.grade, item.clacod, connectionString);
                     }
                 }
             }
+            return rank_cd_all;
         }
     }
 }

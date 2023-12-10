@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Net;
 using System.Linq;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace Calculate.Controllers
 {
@@ -75,6 +76,7 @@ namespace Calculate.Controllers
 
         IHttpActionResult Calculate(string DeptId, string StudentId, int Secno, int Grade, int Clacod, int syearEnd, int semEnd, bool Isrank, string connectionString)
         {
+            bool rank_cd = true;
             List<RegSem> regsems = new List<RegSem>();
             if (DeptId != null) //dept
             {
@@ -116,9 +118,9 @@ namespace Calculate.Controllers
 
             Selstugracrd selstugracrd = new Selstugracrd();
 
-            selstchf.CheckSelstchf(regsems, Isrank, connectionString);
+            rank_cd = selstchf.CheckSelstchf(regsems, Isrank, connectionString) && rank_cd;
 
-            selstugracrd.CheckSelstugracrd(regsems, Isrank, connectionString);
+            selstugracrd.CheckSelstugracrd(regsems, Isrank, rank_cd, connectionString);
 
             var response = new HttpResponseMessage(HttpStatusCode.OK);
             return ResponseMessage(response);

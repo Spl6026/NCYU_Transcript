@@ -68,7 +68,7 @@ namespace Transcript.Controllers
             {
                 return BadRequest();
             }
-            var JsonObject = JsonConvert.DeserializeObject<JSON>(data.ToString());
+            var JsonObject = JsonConvert.DeserializeObject<Transcript_JSON>(data.ToString());
             string DeptId = JsonObject.DeptId;
             string StudentId = JsonObject.StudentId;
             int Secno = JsonObject.Secno;
