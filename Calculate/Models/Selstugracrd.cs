@@ -152,6 +152,8 @@ namespace Calculate.Models
                     {
                         command_upsert.ExecuteNonQuery();
                         Debug.WriteLine("upsert successful");
+                        Selstch selstch = new Selstch();
+                        selstch.UpdateSelstch(2, StudentId, syear, sem, connectionString);
                         return false;
                     }
                     catch (SqlException ex)

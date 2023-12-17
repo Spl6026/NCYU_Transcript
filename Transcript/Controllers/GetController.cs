@@ -32,8 +32,8 @@ namespace Transcript.Controllers
                         {
                             dept_JsonObject.Add(new Select_JSON()
                             {
-                                Id = reader.GetString(0),
-                                Name = reader.GetString(1),
+                                Id = reader.GetString(0).Trim(),
+                                Name = reader.GetString(1).Trim(),
                             });
                         }
                     }
@@ -63,8 +63,8 @@ namespace Transcript.Controllers
                         {
                             sec_JsonObject.Add(new Select_JSON()
                             {
-                                Id = reader.GetString(0),
-                                Name = reader.GetString(1),
+                                Id = reader.GetString(0).Trim(),
+                                Name = reader.GetString(1).Trim(),
                             });
                         }
                     }
@@ -98,8 +98,8 @@ namespace Transcript.Controllers
                         {
                             stu_JsonObject.Add(new Select_JSON()
                             {
-                                Id = reader.GetString(0),
-                                Name = reader.IsDBNull(1) ? "" : reader.GetString(1),
+                                Id = reader.GetString(0).Trim(),
+                                Name = reader.IsDBNull(1) ? "" : reader.GetString(1).Trim(),
                             });
                         }
                     }

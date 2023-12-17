@@ -42,7 +42,7 @@ namespace Calculate.Controllers
                     }
                 }
             }
-            if (semEnd == 3) //新增第三學期
+            if (semEnd == 3 && regsems.Last().sem == 2) //新增第三學期
             {
                 regsems.Add(new RegSem()
                 {

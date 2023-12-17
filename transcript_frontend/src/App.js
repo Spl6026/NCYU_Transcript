@@ -1,4 +1,4 @@
-import {useState, useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import './App.css';
 import Datalist from "./components/datalist";
 import Select from "./components/select";
@@ -69,11 +69,15 @@ const App = () => {
     const [semOption, setSemOption] = useState("");
     const [stuOption, setStuOption] = useState("");
     const [isRank, setIsRank] = useState(false);
+    const [isGrading, setIsGrading] = useState(false);
 
     function rank(e) {
         setIsRank(e.target.checked);
     }
 
+    function grading(e) {
+        setIsGrading(e.target.checked);
+    }
     function sendAPI() {
         var json = {}
         json.DeptId = deptOption;
@@ -84,6 +88,7 @@ const App = () => {
         json.semEnd = semOption;
         json.Isrank = isRank;
         json.StudentId = stuOption;
+        json.IsGrading = isGrading;
         if (deptOption === "" && stuOption === "")
             alert("系所或學號須擇一輸入")
 
@@ -116,6 +121,7 @@ const App = () => {
         }).catch(function (Error) {
             alert(Error);
         });
+
     }
 
     useEffect(() => {
@@ -160,6 +166,9 @@ const App = () => {
     return (
         <div className="App">
             <div>
+                <div className="img">
+                    <img src="https://wwwcms.ncyu.edu.tw/images/logo.png"/>
+                </div>
                 <p>系所：</p>
                 <Datalist htmlId="dept_list" SelectData={DeptData} setOption={setDeptOption}/>
 
@@ -185,6 +194,12 @@ const App = () => {
                     顯示排名
                     <input type="checkbox" onChange={rank}/>
                 </p>
+
+                <p>
+                    用等第顯示
+                    <input type="checkbox" onChange={grading}/>
+                </p>
+
                 <button className="submit" onClick={sendAPI}>送出</button>
             </div>
         </div>

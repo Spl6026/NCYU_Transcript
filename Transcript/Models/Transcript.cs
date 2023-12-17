@@ -12,10 +12,12 @@ namespace Transcript.Models
         public int syearEnd { get; set; }
         public int semEnd { get; set; }
         public bool Isrank { get; set; }
+        public bool Isgrading { get; set; }
     }
 
     public class Student
     {
+        public int Acad { get; set; }
         public string Name { get; set; }
         public string Birth { get; set; }
         public string Enrolled { get; set; }
@@ -37,14 +39,16 @@ namespace Transcript.Models
         }
         public decimal GPA { get; set; }
         public bool IsRank { get; set; }
+        public decimal Thesis { get; set; }
+        public int TR { get; set; }
     }
 
     public class Courses
     { 
         public string Course { get; set; }
+        public int Capacity { get; set; }
         public decimal Credit { get; set; }
-        public bool Pass { get; set; }
-        public decimal Grade { get; set; }
+        public string Grade { get; set; }
         public int DataYear { get; set; }
         public int DataSemester { get; set; }
         public decimal TotalCredit { get; set; }

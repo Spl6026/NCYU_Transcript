@@ -68,14 +68,13 @@ namespace Calculate.Models
             }
         }
 
-        void InsertSelstchf(string StudentId, int syear, int sem, string deptno, int secno, int grade, int clacod, string connectionString)
+        void InsertSelstchf(string StudentId, int syear, int sem, string deptno, int secno, int grade, int clacod, int acadno, string connectionString)
         {
             List<Courses> courses = new List<Courses>();
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-
-                string cmd = $"SELECT [pass], [credit], [totalscore], [avg_cd] FROM [Test_ncyu_dev].[dbo].[selstch] WHERE [stuno] = '{StudentId}' AND [syear] = {syear} AND [sem] = {sem}";
+                string cmd = $"SELECT [pass], [credit], [totalscore], [dropcd], [capacity] FROM [Test_ncyu_dev].[dbo].[selstch] WHERE [stuno] = '{StudentId}' AND [syear] = {syear} AND [sem] = {sem} AND [arrival_cd] = '1'";
                 using (SqlCommand command = new SqlCommand(cmd, connection))
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
@@ -84,12 +83,16 @@ namespace Calculate.Models
                         {
                             if (!reader.IsDBNull(0))
                             {
-                                courses.Add(new Courses()
+                                if (!((Int32.Parse(reader.GetString(4)) == 2 || Int32.Parse(reader.GetString(4)) == 3) && acadno != 3))
                                 {
-                                    Credit = reader.GetDecimal(1),
-                                    Grade = reader.GetDecimal(2),
-                                    avg_cd = reader.GetString(3),
-                                });
+                                    courses.Add(new Courses()
+                                    {
+                                        Pass = reader.GetString(0).Trim() == "Y" ? true : false,
+                                        Credit = reader.GetDecimal(1),
+                                        Grade = reader.GetDecimal(2),
+                                        dropcd = Int32.Parse(reader.GetString(3)),
+                                    });
+                                }
                             }
                         }
                     }
@@ -100,24 +103,27 @@ namespace Calculate.Models
                 decimal GPA = 0;
                 foreach (var item in courses)
                 {
-                    susco += item.Grade * item.Credit;
+                    if (item.dropcd != 1)
+                    {
+                        susco += item.Grade * item.Credit;
 
-                    sucrd += item.Credit;
+                        sucrd += item.Credit;
 
-                    if (item.Grade >= 60)
-                        rgcrd += item.Credit;
+                        if (item.Pass)
+                            rgcrd += item.Credit;
 
-                    if (item.Grade >= 80)
-                        GPA += 4 * item.Credit;
+                        if (item.Grade >= 80)
+                            GPA += 4 * item.Credit;
 
-                    else if (item.Grade >= 70)
-                        GPA += 3 * item.Credit;
+                        else if (item.Grade >= 70)
+                            GPA += 3 * item.Credit;
 
-                    else if (item.Grade >= 60)
-                        GPA += 2 * item.Credit;
+                        else if (item.Grade >= 60)
+                            GPA += 2 * item.Credit;
 
-                    else if (item.Grade >= 50)
-                        GPA += 1 * item.Credit;
+                        else if (item.Grade >= 50)
+                            GPA += 1 * item.Credit;
+                    }
                 }
                 cmd = $"INSERT INTO [dbo].[selstchf]([stuno], [syear], [sem], [deptno], [secno], [grade], [clacod], [sucrd], [rgcrd], [lesscd], [susco], [scoavg], [rank], [allman], [gpa], [user_id], [updat_date], [updat_time], [rank_cd]) VALUES " +
                     $"('{StudentId}'" +
@@ -144,6 +150,8 @@ namespace Calculate.Models
                 {
                     command_insert.ExecuteNonQuery();
                     Debug.WriteLine("insert successful");
+                    Selstch selstch = new Selstch();
+                    selstch.UpdateSelstch(1, StudentId, syear, sem, connectionString);
                 }
                 catch (SqlException ex)
                 {
@@ -160,6 +168,7 @@ namespace Calculate.Models
                 connection.Open();
                 List<Student> students = new List<Student>();
                 RegSem regsem = regsems.Last();
+                int acadno = 0;
                 string cmd = $"SELECT [stuno] FROM [Test_ncyu_dev].[dbo].[regstusem] WHERE [syear] = {regsem.syear} AND [sem] = {(regsem.sem > 2 ? 2 : regsem.sem)} AND [deptno] = '{regsem.deptno}' AND [secno] = {regsem.secno} AND [grade] = {regsem.grade} AND [clacod] = {regsem.clacod} AND [stateno] = 01";
                 using (SqlCommand command = new SqlCommand(cmd, connection))
                 {
@@ -174,6 +183,19 @@ namespace Calculate.Models
                         }
                     }
                 }
+
+                cmd = $"SELECT [acadno] FROM [Test_ncyu_dev].[dbo].[pubdep] WHERE [deptno] = '{regsem.deptno}'";
+                using (SqlCommand command = new SqlCommand(cmd, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            acadno = Int32.Parse(reader.GetString(0));
+                        }
+                    }
+                }
+
                 foreach (var item in regsems)
                 {
                     
@@ -209,7 +231,7 @@ namespace Calculate.Models
                             }
                             if (IsExistSelstch && !IsExistSelstchf)
                             {
-                                InsertSelstchf(stu.stuno, item.syear, 3, item.deptno, item.secno, item.grade, item.clacod, connectionString);
+                                InsertSelstchf(stu.stuno, item.syear, 3, item.deptno, item.secno, item.grade, item.clacod, acadno, connectionString);
                             }
                         }
                     }
@@ -224,7 +246,7 @@ namespace Calculate.Models
                                 {
                                     if (!reader.Read())
                                     {
-                                        InsertSelstchf(stu.stuno, item.syear, item.sem, item.deptno, item.secno, item.grade, item.clacod, connectionString);
+                                        InsertSelstchf(stu.stuno, item.syear, item.sem, item.deptno, item.secno, item.grade, item.clacod, acadno, connectionString);
                                         rank_cd = false;
                                     }
                                     else

@@ -77,6 +77,7 @@ namespace Transcript.Controllers
             int syearEnd = JsonObject.syearEnd;
             int semEnd = JsonObject.semEnd;
             bool Isrank = JsonObject.Isrank;
+            bool Isgrading = JsonObject.Isgrading;
             List<string> StudentIds = new List<string>();
             DataBase link = new DataBase();
             string connectionString = System.Web.Configuration.WebConfigurationManager.ConnectionStrings["DefaultDbConnection"].ConnectionString;
@@ -105,7 +106,7 @@ namespace Transcript.Controllers
                     {
                         foreach (string stuno in StudentIds)
                         {
-                            Tuple<List<Student>, List<Courses>> tuple = link.SQLGet(stuno, syearEnd, semEnd, Isrank, connectionString);
+                            Tuple<List<Student>, List<Courses>> tuple = link.SQLGet(stuno, syearEnd, semEnd, Isrank, Isgrading, connectionString);
                             byte[] pdf = GeneratePDF(tuple, stuno);
                             if (pdf == null)
                                 return ResponseMessage(new HttpResponseMessage(HttpStatusCode.Gone));
@@ -130,7 +131,7 @@ namespace Transcript.Controllers
             }
             else //stu
             {
-                Tuple<List<Student>, List<Courses>> tuple = link.SQLGet(StudentId, syearEnd, semEnd, Isrank, connectionString);
+                Tuple<List<Student>, List<Courses>> tuple = link.SQLGet(StudentId, syearEnd, semEnd, Isrank, Isgrading, connectionString);
                 byte[] pdf = GeneratePDF(tuple, StudentId);
                 if (pdf == null)
                     return ResponseMessage(new HttpResponseMessage(HttpStatusCode.Gone));

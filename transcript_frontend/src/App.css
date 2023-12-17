@@ -7,3 +7,15 @@
 select, .datalist_input{
     width: 10vw;
 }
+
+.img{
+    background-color: #043b95;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+
+}
+
+img{
+    height: 100px;
+}
