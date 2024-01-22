@@ -278,12 +278,10 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\GenerateController.cs" />
-    <Compile Include="Controllers\GetController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DataBase.cs" />
-    <Compile Include="Models\React.cs" />
     <Compile Include="Models\Transcript.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

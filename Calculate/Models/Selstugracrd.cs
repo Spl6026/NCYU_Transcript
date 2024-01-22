@@ -9,7 +9,7 @@ namespace Calculate.Models
 {
     public class Selstugracrd
     {
-        void RankSelstugracrd(List<Student> students, string connectionString)
+        void RankSelstugracrd(string user_id, List<Student> students, string connectionString)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -17,7 +17,7 @@ namespace Calculate.Models
                 connection.Open();
                 foreach (var stu in students)
                 {
-                    cmd = $"SELECT [scoavg] FROM [Test_ncyu_dev].[dbo].[selstugracrd] WHERE [stuno] = '{stu.stuno}'";
+                    cmd = $"SELECT [scoavg] FROM [selstugracrd] WHERE [stuno] = '{stu.stuno}'";
                     using (SqlCommand command = new SqlCommand(cmd, connection))
                     {
                         using (SqlDataReader reader = command.ExecuteReader())
@@ -51,7 +51,7 @@ namespace Calculate.Models
                     }
                     item.rank = rank;
                     scoavg_pre = scoavg_temp;
-                    cmd = $"UPDATE [dbo].[selstugracrd] SET [clspgnsort] = {item.rank}, [allman] = {size}, [user_id] = 'test', [updat_date] = '{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff", new CultureInfo("en-us"))}', [updat_time] = {DateTime.Now.ToString("HHmmss", new CultureInfo("en-us"))}, [rank_cd] = 1 WHERE [stuno] = '{item.stuno}'";
+                    cmd = $"UPDATE [selstugracrd] SET [clspgnsort] = {item.rank}, [allman] = {size}, [user_id] = '{user_id}', [updat_date] = '{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff", new CultureInfo("en-us"))}', [updat_time] = {DateTime.Now.ToString("HHmmss", new CultureInfo("en-us"))}, [rank_cd] = 1 WHERE [stuno] = '{item.stuno}'";
                     SqlCommand command_update = new SqlCommand(cmd, connection);
                     try
                     {
@@ -67,7 +67,7 @@ namespace Calculate.Models
             }
         }
 
-        bool UpsertSelstugracrd(string StudentId, int syear, int sem, string connectionString)
+        bool UpsertSelstugracrd(string user_id, string StudentId, int syear, int sem, string connectionString)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -81,7 +81,7 @@ namespace Calculate.Models
                 bool Update = false;
                 bool rank_cd = false;
 
-                string cmd = $"SELECT [sucrd], [rgcrd], [susco], [gpa] FROM [Test_ncyu_dev].[dbo].[selstchf] WHERE [stuno] = '{StudentId}' AND (([syear] < {syear}) OR ([syear] = {syear} AND [sem] <= {sem})) ORDER BY [syear], [sem]";
+                string cmd = $"SELECT [sucrd], [rgcrd], [susco], [gpa] FROM [selstchf] WHERE [stuno] = '{StudentId}' AND (([syear] < {syear}) OR ([syear] = {syear} AND [sem] <= {sem})) ORDER BY [syear], [sem]";
                 using (SqlCommand command = new SqlCommand(cmd, connection))
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
@@ -99,7 +99,7 @@ namespace Calculate.Models
                 decimal avg = Math.Round(susco != 0 ? susco / sucrd : 0, 2);
                 GPA = Math.Round(GPA != 0 ? GPA / sucrd : 0, 2);
 
-                cmd = $"SELECT [syear], [sem], [rank_cd] FROM [Test_ncyu_dev].[dbo].[selstugracrd] WHERE [stuno] = '{StudentId}'";
+                cmd = $"SELECT [syear], [sem], [rank_cd] FROM [selstugracrd] WHERE [stuno] = '{StudentId}'";
                 using (SqlCommand command = new SqlCommand(cmd, connection))
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
@@ -121,7 +121,7 @@ namespace Calculate.Models
 
                 if (Insert)
                 {
-                    cmd = $"INSERT INTO [dbo].[selstugracrd]([stuno], [scoavg], [clspgnsort], [acadpgnsort], [deptprnsort], [allman], [syear], [sem], [user_id], [updat_date], [updat_time], [rank_cd], [accsusco], [accsucrd], [accrgcrd], [accgpa]) VALUES " +
+                    cmd = $"INSERT INTO [selstugracrd]([stuno], [scoavg], [clspgnsort], [acadpgnsort], [deptprnsort], [allman], [syear], [sem], [user_id], [updat_date], [updat_time], [rank_cd], [accsusco], [accsucrd], [accrgcrd], [accgpa]) VALUES " +
                         $"('{StudentId}'" +
                         $",{avg}" +
                         $",NULL" +
@@ -130,7 +130,7 @@ namespace Calculate.Models
                         $",NULL" +
                         $",{syear}" +
                         $",{sem}" +
-                        $",'test'" +
+                        $",'{user_id}'" +
                         $",'{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff", new CultureInfo("en-us"))}'" +
                         $",{DateTime.Now.ToString("HHmmss", new CultureInfo("en-us"))}" +
                         $",0" +
@@ -142,30 +142,23 @@ namespace Calculate.Models
 
                 if (Update)
                 {
-                    cmd = $"UPDATE [dbo].[selstugracrd] SET [scoavg] = {avg}, [clspgnsort] = NULL, [allman] = NULL, [syear] = {syear}, [sem] = {sem}, [user_id] = 'test', [updat_date] = '{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff", new CultureInfo("en-us"))}', [updat_time] = {DateTime.Now.ToString("HHmmss", new CultureInfo("en-us"))}, [rank_cd] = 0, [accsusco] = {susco}, [accsucrd] = {sucrd}, [accrgcrd] = {rgcrd}, [accgpa] = {GPA} WHERE [stuno] = '{StudentId}'";
+                    cmd = $"UPDATE [selstugracrd] SET [scoavg] = {avg}, [clspgnsort] = NULL, [allman] = NULL, [syear] = {syear}, [sem] = {sem}, [user_id] = '{user_id}', [updat_date] = '{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff", new CultureInfo("en-us"))}', [updat_time] = {DateTime.Now.ToString("HHmmss", new CultureInfo("en-us"))}, [rank_cd] = 0, [accsusco] = {susco}, [accsucrd] = {sucrd}, [accrgcrd] = {rgcrd}, [accgpa] = {GPA} WHERE [stuno] = '{StudentId}'";
                 }
                 if (Insert || Update)
                 {
                     Debug.WriteLine(cmd);
                     SqlCommand command_upsert = new SqlCommand(cmd, connection);
-                    try
-                    {
-                        command_upsert.ExecuteNonQuery();
-                        Debug.WriteLine("upsert successful");
-                        Selstch selstch = new Selstch();
-                        selstch.UpdateSelstch(2, StudentId, syear, sem, connectionString);
-                        return false;
-                    }
-                    catch (SqlException ex)
-                    {
-                        Debug.WriteLine(ex.Message);
-                    }
+                    Initial initial = new Initial();
+                    initial.DBWrite(command_upsert);
+                    initial.UpdateSelstch(user_id, 2, StudentId, syear, sem, connectionString);
+                    Debug.WriteLine("UpsertSelstugracrd");
+                    return false;
                 }
                 return true;
             }
         }
 
-        public void CheckSelstugracrd(List<RegSem> regsems, bool Isrank, bool rank_cd, string connectionString)
+        public void CheckSelstugracrd(string user_id, List<RegSem> regsems, bool Isrank, bool rank_cd, string connectionString)
         {
             RegSem regsem = regsems.Last();
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -173,7 +166,7 @@ namespace Calculate.Models
                 connection.Open();
 
                 List<Student> students = new List<Student>();
-                string cmd = $"SELECT [stuno] FROM [Test_ncyu_dev].[dbo].[regstusem] WHERE [syear] = {regsem.syear} AND [sem] = {(regsem.sem > 2 ? 2 : regsem.sem)} AND [deptno] = '{regsem.deptno}' AND [secno] = {regsem.secno} AND [grade] = {regsem.grade} AND [clacod] = {regsem.clacod} AND [stateno] = 01";
+                string cmd = $"SELECT [stuno] FROM [regstusem] WHERE [syear] = {regsem.syear} AND [sem] = {(regsem.sem > 2 ? 2 : regsem.sem)} AND [deptno] = '{regsem.deptno}' AND [secno] = {regsem.secno} AND [grade] = {regsem.grade} AND [clacod] = {regsem.clacod} AND [stateno] = 01";
                 using (SqlCommand command = new SqlCommand(cmd, connection))
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
@@ -189,12 +182,12 @@ namespace Calculate.Models
                 }
                 foreach (var stu in students)
                 {
-                    rank_cd = UpsertSelstugracrd(stu.stuno, regsem.syear, regsem.sem, connectionString) && rank_cd;
+                    rank_cd = UpsertSelstugracrd(user_id, stu.stuno, regsem.syear, regsem.sem, connectionString) && rank_cd;
                 }
                 Debug.WriteLine(("selstugracrd_rank_cd:", rank_cd));
                 if (Isrank && !rank_cd)
                 {
-                    RankSelstugracrd(students, connectionString);
+                    RankSelstugracrd(user_id, students, connectionString);
                 }
             }
         }

@@ -10,14 +10,14 @@ namespace Calculate.Models
 {
     public class Selstchf
     {
-        void RankSelstchf(int syear, int sem, string deptno, int secno, int grade, int clacod, string connectionString) //----------在一個學期內，排序selstchf裡該學系所有學生的排名
+        void RankSelstchf(string user_id, int syear, int sem, string deptno, int secno, int grade, int clacod, string connectionString) //----------在一個學期內，排序selstchf裡該學系所有學生的排名
         {
             List<Student> students = new List<Student>();
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
-                string cmd = $"SELECT [stuno], [scoavg] FROM [Test_ncyu_dev].[dbo].[selstchf] WHERE [syear] = {syear} AND [sem] = {sem} AND [deptno] = '{deptno}' AND [secno] = {secno} AND [grade] = {grade} AND [clacod] = {clacod} ORDER BY [scoavg] DESC";
+                string cmd = $"SELECT [stuno], [scoavg] FROM [selstchf] WHERE [syear] = {syear} AND [sem] = {sem} AND [deptno] = '{deptno}' AND [secno] = {secno} AND [grade] = {grade} AND [clacod] = {clacod} ORDER BY [scoavg] DESC";
                 Debug.WriteLine(cmd);
                 using (SqlCommand command = new SqlCommand(cmd, connection))
                 {
@@ -52,29 +52,22 @@ namespace Calculate.Models
                 int size = students.Count;
                 foreach (Student stu in students)
                 {
-                    cmd = $"UPDATE [dbo].[selstchf] SET [rank] = {stu.rank}, [allman] = {size}, [user_id] = 'test', [updat_date] = '{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff", new CultureInfo("en-us"))}', [updat_time] = {DateTime.Now.ToString("HHmmss", new CultureInfo("en-us"))}, [rank_cd] = 1 WHERE [stuno] = '{stu.stuno}' AND [syear] = {syear} AND [sem] = {sem} AND [deptno] = '{deptno}' AND [secno] = {secno} AND [grade] = {grade} AND [clacod] = {clacod}";
+                    cmd = $"UPDATE [selstchf] SET [rank] = {stu.rank}, [allman] = {size}, [user_id] = '{user_id}', [updat_date] = '{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff", new CultureInfo("en-us"))}', [updat_time] = {DateTime.Now.ToString("HHmmss", new CultureInfo("en-us"))}, [rank_cd] = 1 WHERE [stuno] = '{stu.stuno}' AND [syear] = {syear} AND [sem] = {sem} AND [deptno] = '{deptno}' AND [secno] = {secno} AND [grade] = {grade} AND [clacod] = {clacod}";
                     SqlCommand command_update = new SqlCommand(cmd, connection);
-                    try
-                    {
-                        command_update.ExecuteNonQuery();
-                        Debug.WriteLine("update successful");
-                    }
-                    catch (SqlException ex)
-                    {
-                        Debug.WriteLine(ex.Message);
-                    }
+                    Initial initial = new Initial();
+                    initial.DBWrite(command_update);
                     Debug.WriteLine(("Rankselstchf", stu.stuno, stu.rank));
                 }
             }
         }
 
-        void InsertSelstchf(string StudentId, int syear, int sem, string deptno, int secno, int grade, int clacod, int acadno, string connectionString)
+        void InsertSelstchf(string user_id, string StudentId, int syear, int sem, string deptno, int secno, int grade, int clacod, int acadno, string connectionString)
         {
             List<Courses> courses = new List<Courses>();
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                string cmd = $"SELECT [pass], [credit], [totalscore], [dropcd], [capacity] FROM [Test_ncyu_dev].[dbo].[selstch] WHERE [stuno] = '{StudentId}' AND [syear] = {syear} AND [sem] = {sem} AND [arrival_cd] = '1'";
+                string cmd = $"SELECT [pass], [credit], [totalscore], [dropcd], [capacity] FROM [selstch] WHERE [stuno] = '{StudentId}' AND [syear] = {syear} AND [sem] = {sem} AND [arrival_cd] = '1'";
                 using (SqlCommand command = new SqlCommand(cmd, connection))
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
@@ -83,7 +76,7 @@ namespace Calculate.Models
                         {
                             if (!reader.IsDBNull(0))
                             {
-                                if (!((Int32.Parse(reader.GetString(4)) == 2 || Int32.Parse(reader.GetString(4)) == 3) && acadno != 3))
+                                if (!((Int32.Parse(reader.GetString(4)) == 2 || Int32.Parse(reader.GetString(4)) == 3) && !(acadno == 3 || acadno == 4 || acadno == 6)))
                                 {
                                     courses.Add(new Courses()
                                     {
@@ -125,7 +118,7 @@ namespace Calculate.Models
                             GPA += 1 * item.Credit;
                     }
                 }
-                cmd = $"INSERT INTO [dbo].[selstchf]([stuno], [syear], [sem], [deptno], [secno], [grade], [clacod], [sucrd], [rgcrd], [lesscd], [susco], [scoavg], [rank], [allman], [gpa], [user_id], [updat_date], [updat_time], [rank_cd]) VALUES " +
+                cmd = $"INSERT INTO [selstchf]([stuno], [syear], [sem], [deptno], [secno], [grade], [clacod], [sucrd], [rgcrd], [lesscd], [susco], [scoavg], [rank], [allman], [gpa], [user_id], [updat_date], [updat_time], [rank_cd]) VALUES " +
                     $"('{StudentId}'" +
                     $",{syear}" +
                     $",{sem}" +
@@ -141,26 +134,20 @@ namespace Calculate.Models
                     $",0" +
                     $",''" +
                     $",{Math.Round(GPA != 0 ? GPA / sucrd : 0, 2)}" +
-                    $",'test'" +
+                    $",'{user_id}'" +
                     $",'{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff", new CultureInfo("en-us"))}'" +
                     $",{DateTime.Now.ToString("HHmmss", new CultureInfo("en-us"))}" +
                     $",0)";
                 SqlCommand command_insert = new SqlCommand(cmd, connection);
-                try
-                {
-                    command_insert.ExecuteNonQuery();
-                    Debug.WriteLine("insert successful");
-                    Selstch selstch = new Selstch();
-                    selstch.UpdateSelstch(1, StudentId, syear, sem, connectionString);
-                }
-                catch (SqlException ex)
-                {
-                    Debug.WriteLine(ex.Message);
-                }
+                Initial initial = new Initial();
+                initial.DBWrite(command_insert);
+                initial.UpdateSelstch(user_id, 1, StudentId, syear, sem, connectionString);
+                Debug.WriteLine("InsertSelstchf");
+                
             }
         }
 
-        public bool CheckSelstchf(List<RegSem> regsems, bool Isrank, string connectionString) //做該系所Selstchf的insert&rank
+        public bool CheckSelstchf(string user_id, List<RegSem> regsems, bool Isrank, string connectionString) //做該系所Selstchf的insert&rank
         {
             bool rank_cd_all = true;
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -169,7 +156,7 @@ namespace Calculate.Models
                 List<Student> students = new List<Student>();
                 RegSem regsem = regsems.Last();
                 int acadno = 0;
-                string cmd = $"SELECT [stuno] FROM [Test_ncyu_dev].[dbo].[regstusem] WHERE [syear] = {regsem.syear} AND [sem] = {(regsem.sem > 2 ? 2 : regsem.sem)} AND [deptno] = '{regsem.deptno}' AND [secno] = {regsem.secno} AND [grade] = {regsem.grade} AND [clacod] = {regsem.clacod} AND [stateno] = 01";
+                string cmd = $"SELECT [stuno] FROM [regstusem] WHERE [syear] = {regsem.syear} AND [sem] = {(regsem.sem > 2 ? 2 : regsem.sem)} AND [deptno] = '{regsem.deptno}' AND [secno] = {regsem.secno} AND [grade] = {regsem.grade} AND [clacod] = {regsem.clacod} AND [stateno] = 01";
                 using (SqlCommand command = new SqlCommand(cmd, connection))
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
@@ -184,7 +171,7 @@ namespace Calculate.Models
                     }
                 }
 
-                cmd = $"SELECT [acadno] FROM [Test_ncyu_dev].[dbo].[pubdep] WHERE [deptno] = '{regsem.deptno}'";
+                cmd = $"SELECT [acadno] FROM [pubdep] WHERE [deptno] = '{regsem.deptno}'";
                 using (SqlCommand command = new SqlCommand(cmd, connection))
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
@@ -207,7 +194,7 @@ namespace Calculate.Models
                         {
                             bool IsExistSelstch = false;
                             bool IsExistSelstchf = false;
-                            cmd = $"SELECT [stuno] FROM [Test_ncyu_dev].[dbo].[selstch] WHERE [stuno] = '{stu.stuno}' AND [syear] = {item.syear} AND [sem] = 3";
+                            cmd = $"SELECT [stuno] FROM [selstch] WHERE [stuno] = '{stu.stuno}' AND [syear] = {item.syear} AND [sem] = 3";
                             using (SqlCommand command = new SqlCommand(cmd, connection))
                             {
                                 using (SqlDataReader reader = command.ExecuteReader())
@@ -218,7 +205,7 @@ namespace Calculate.Models
                                     }
                                 }
                             }
-                            cmd = $"SELECT [stuno] FROM [Test_ncyu_dev].[dbo].[selstchf] WHERE [stuno] = '{stu.stuno}' AND [syear] = {item.syear} AND [sem] = 3";
+                            cmd = $"SELECT [stuno] FROM [selstchf] WHERE [stuno] = '{stu.stuno}' AND [syear] = {item.syear} AND [sem] = 3";
                             using (SqlCommand command = new SqlCommand(cmd, connection))
                             {
                                 using (SqlDataReader reader = command.ExecuteReader())
@@ -231,7 +218,7 @@ namespace Calculate.Models
                             }
                             if (IsExistSelstch && !IsExistSelstchf)
                             {
-                                InsertSelstchf(stu.stuno, item.syear, 3, item.deptno, item.secno, item.grade, item.clacod, acadno, connectionString);
+                                InsertSelstchf(user_id, stu.stuno, item.syear, 3, item.deptno, item.secno, item.grade, item.clacod, acadno, connectionString);
                             }
                         }
                     }
@@ -239,14 +226,14 @@ namespace Calculate.Models
                     {
                         foreach (var stu in students)
                         {
-                            cmd = $"SELECT [rank_cd] FROM [Test_ncyu_dev].[dbo].[selstchf] WHERE [stuno] = '{stu.stuno}' AND [syear] = {item.syear} AND [sem] = {item.sem}";
+                            cmd = $"SELECT [rank_cd] FROM [selstchf] WHERE [stuno] = '{stu.stuno}' AND [syear] = {item.syear} AND [sem] = {item.sem}";
                             using (SqlCommand command = new SqlCommand(cmd, connection))
                             {
                                 using (SqlDataReader reader = command.ExecuteReader())
                                 {
                                     if (!reader.Read())
                                     {
-                                        InsertSelstchf(stu.stuno, item.syear, item.sem, item.deptno, item.secno, item.grade, item.clacod, acadno, connectionString);
+                                        InsertSelstchf(user_id, stu.stuno, item.syear, item.sem, item.deptno, item.secno, item.grade, item.clacod, acadno, connectionString);
                                         rank_cd = false;
                                     }
                                     else
@@ -261,7 +248,7 @@ namespace Calculate.Models
                     rank_cd_all = rank_cd_all && rank_cd;
                     if ((Isrank && !rank_cd) && item.sem != 3)
                     {
-                        RankSelstchf(item.syear, item.sem, item.deptno, item.secno, item.grade, item.clacod, connectionString);
+                        RankSelstchf(user_id, item.syear, item.sem, item.deptno, item.secno, item.grade, item.clacod, connectionString);
                     }
                 }
             }

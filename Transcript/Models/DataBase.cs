@@ -39,6 +39,9 @@ namespace Transcript.Models
                 else if (grade >= 50)
                     grad = "D";
 
+                else
+                    grad = "E";
+
                 return pass + grad;
             }
             else
@@ -51,7 +54,28 @@ namespace Transcript.Models
             return "TR";
         }
 
-        public Tuple<List<Student>, List<Courses>> SQLGet(string StudentId, int syearEnd, int semEnd, bool Isrank, bool Isgrading, string connectionString)
+        public List<string> StuGet(string DeptId, int Secno, int Grade, int Clacod, int syearEnd, int semEnd, string connectionString)
+        {
+            List<string> StudentIds = new List<string>();
+            string cmd = $"SELECT [stuno] FROM [regstusem] WHERE [deptno] = '{DeptId}' AND [secno] = {Secno} AND [grade] = {Grade} AND [clacod] = {Clacod} AND [syear] = {syearEnd} AND [sem] = {(semEnd > 2 ? 2 : semEnd)}";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(cmd, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            StudentIds.Add(reader.GetString(0));
+                        }
+                    }
+                }
+            }
+            return StudentIds;
+        }
+
+        public Tuple<List<Student>, List<Courses>> InfoGet(string StudentId, int syearEnd, int semEnd, bool Isrank, bool Isgrading, string connectionString)
         {
             TR = 0;
             List<Student> stu = new List<Student>();
@@ -61,7 +85,7 @@ namespace Transcript.Models
                 connection.Open();
 
                 int acad = 0;
-                string cmd = $"SELECT [acadno] FROM [Test_ncyu_dev].[dbo].[stufile] WHERE [stuno] = '{StudentId}'";
+                string cmd = $"SELECT [acadno] FROM [stufile] WHERE [stuno] = '{StudentId}'";
                 using (SqlCommand command = new SqlCommand(cmd, connection))
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
@@ -73,10 +97,10 @@ namespace Transcript.Models
                     }
                 }
                 string cr = "";
-                if (acad == 3)
+                if (acad == 3 || acad == 4 || acad == 6)
                     cr = "OR [cr_class] = 4";
 
-                cmd = $"SELECT [englishco], [credit], [pass], [totalscore], [Test_ncyu_dev].[dbo].[selstch].[syear], [Test_ncyu_dev].[dbo].[selstch].[sem], [rgcrd], [scoavg], [total_score], [capacity], [dropcd], [arrival_cd] FROM [Test_ncyu_dev].[dbo].[selstch] LEFT JOIN [Test_ncyu_dev].[dbo].[crscourse] ON [Test_ncyu_dev].[dbo].[selstch].[cono] = [Test_ncyu_dev].[dbo].[crscourse].[cono] LEFT JOIN [Test_ncyu_dev].[dbo].[con_behavior] ON [Test_ncyu_dev].[dbo].[selstch].[syear] = [Test_ncyu_dev].[dbo].[con_behavior].[syear] AND [Test_ncyu_dev].[dbo].[selstch].[sem] = [Test_ncyu_dev].[dbo].[con_behavior].[sem] AND [Test_ncyu_dev].[dbo].[selstch].[stuno] = [Test_ncyu_dev].[dbo].[con_behavior].[stuno] LEFT JOIN [Test_ncyu_dev].[dbo].[selstchf] ON [Test_ncyu_dev].[dbo].[selstch].[syear] = [Test_ncyu_dev].[dbo].[selstchf].[syear] AND [Test_ncyu_dev].[dbo].[selstch].[sem] = [Test_ncyu_dev].[dbo].[selstchf].[sem] AND [Test_ncyu_dev].[dbo].[selstch].[stuno] = [Test_ncyu_dev].[dbo].[selstchf].[stuno] WHERE [Test_ncyu_dev].[dbo].[selstch].[stuno] = '{StudentId}' AND (([Test_ncyu_dev].[dbo].[selstch].[syear] < {syearEnd}) OR ([Test_ncyu_dev].[dbo].[selstch].[syear] = {syearEnd} AND [Test_ncyu_dev].[dbo].[selstch].[sem] <= {semEnd})) UNION SELECT [englishco], [credit], CAST('Y' AS CHAR) AS [pass], NULL AS [totalscore], [Test_ncyu_dev].[dbo].[crscredit].[syear], [Test_ncyu_dev].[dbo].[crscredit].[sem], [rgcrd], [scoavg], [total_score], CAST('0' AS CHAR) AS [capacity], CAST('0' AS CHAR) AS [dropcd], CAST('1' AS CHAR) AS [arrival_cd] FROM [Test_ncyu_dev].[dbo].[crscredit] LEFT JOIN [Test_ncyu_dev].[dbo].[crscourse] ON [Test_ncyu_dev].[dbo].[crscredit].[crcono] = [Test_ncyu_dev].[dbo].[crscourse].[cono] LEFT JOIN [Test_ncyu_dev].[dbo].[con_behavior] ON [Test_ncyu_dev].[dbo].[crscredit].[syear] = [Test_ncyu_dev].[dbo].[con_behavior].[syear] AND [Test_ncyu_dev].[dbo].[crscredit].[sem] = [Test_ncyu_dev].[dbo].[con_behavior].[sem] AND [Test_ncyu_dev].[dbo].[crscredit].[stuno] = [Test_ncyu_dev].[dbo].[con_behavior].[stuno] LEFT JOIN [Test_ncyu_dev].[dbo].[selstchf] ON [Test_ncyu_dev].[dbo].[crscredit].[syear] = [Test_ncyu_dev].[dbo].[selstchf].[syear] AND [Test_ncyu_dev].[dbo].[crscredit].[sem] = [Test_ncyu_dev].[dbo].[selstchf].[sem] AND [Test_ncyu_dev].[dbo].[crscredit].[stuno] = [Test_ncyu_dev].[dbo].[selstchf].[stuno] WHERE [Test_ncyu_dev].[dbo].[crscredit].[stuno] = '{StudentId}' AND (([Test_ncyu_dev].[dbo].[crscredit].[syear] < {syearEnd}) OR ([Test_ncyu_dev].[dbo].[crscredit].[syear] = {syearEnd} AND [Test_ncyu_dev].[dbo].[crscredit].[sem] <= {semEnd})) AND ([cr_class] = 2 {cr}) ORDER BY [syear], [sem], [capacity]";
+                cmd = $"SELECT [englishco], [credit], [pass], [totalscore], [selstch].[syear], [selstch].[sem], [rgcrd], [scoavg], [total_score], [capacity], [dropcd], [arrival_cd] FROM [selstch] LEFT JOIN [crscourse] ON [selstch].[cono] = [crscourse].[cono] LEFT JOIN [con_behavior] ON [selstch].[syear] = [con_behavior].[syear] AND [selstch].[sem] = [con_behavior].[sem] AND [selstch].[stuno] = [con_behavior].[stuno] LEFT JOIN [selstchf] ON [selstch].[syear] = [selstchf].[syear] AND [selstch].[sem] = [selstchf].[sem] AND [selstch].[stuno] = [selstchf].[stuno] WHERE [selstch].[stuno] = '{StudentId}' AND (([selstch].[syear] < {syearEnd}) OR ([selstch].[syear] = {syearEnd} AND [selstch].[sem] <= {semEnd})) UNION SELECT [englishco], [credit], CAST('Y' AS CHAR) AS [pass], NULL AS [totalscore], [crscredit].[syear], [crscredit].[sem], [rgcrd], [scoavg], [total_score], CAST('0' AS CHAR) AS [capacity], CAST('0' AS CHAR) AS [dropcd], CAST('1' AS CHAR) AS [arrival_cd] FROM [crscredit] LEFT JOIN [crscourse] ON [crscredit].[crcono] = [crscourse].[cono] LEFT JOIN [con_behavior] ON [crscredit].[syear] = [con_behavior].[syear] AND [crscredit].[sem] = [con_behavior].[sem] AND [crscredit].[stuno] = [con_behavior].[stuno] LEFT JOIN [selstchf] ON [crscredit].[syear] = [selstchf].[syear] AND [crscredit].[sem] = [selstchf].[sem] AND [crscredit].[stuno] = [selstchf].[stuno] WHERE [crscredit].[stuno] = '{StudentId}' AND (([crscredit].[syear] < {syearEnd}) OR ([crscredit].[syear] = {syearEnd} AND [crscredit].[sem] <= {semEnd})) AND ([cr_class] = 2 {cr}) ORDER BY [syear], [sem], [capacity]";
                 using (SqlCommand command = new SqlCommand(cmd, connection))
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
@@ -101,7 +125,7 @@ namespace Transcript.Models
                         }
                     }
                 }
-                cmd = $"SELECT [ename], [cname], [birthday], [entrym], [degrenam], [graddat], [deptenam], [colenam], [scoavg], [accrgcrd], [clspgnsort], [allman], [accgpa], [Test_ncyu_dev].[dbo].[selpaper].[score] FROM [Test_ncyu_dev].[dbo].[stufile] LEFT JOIN [Test_ncyu_dev].[dbo].[sclperson] ON [Test_ncyu_dev].[dbo].[stufile].[idno] = [Test_ncyu_dev].[dbo].[sclperson].[idno] LEFT JOIN [Test_ncyu_dev].[dbo].[pubsec] ON [Test_ncyu_dev].[dbo].[stufile].[deptno] = [Test_ncyu_dev].[dbo].[pubsec].[deptno] LEFT JOIN [Test_ncyu_dev].[dbo].[pubdep] ON [Test_ncyu_dev].[dbo].[stufile].[deptno] = [Test_ncyu_dev].[dbo].[pubdep].[deptno] LEFT JOIN [Test_ncyu_dev].[dbo].[pubcol] ON [Test_ncyu_dev].[dbo].[pubcol].[colno] = [Test_ncyu_dev].[dbo].[pubdep].[colno] LEFT JOIN [Test_ncyu_dev].[dbo].[selstugracrd] ON [Test_ncyu_dev].[dbo].[stufile].[stuno] = [Test_ncyu_dev].[dbo].[selstugracrd].[stuno] LEFT JOIN [Test_ncyu_dev].[dbo].[selpaper] ON [Test_ncyu_dev].[dbo].[stufile].[stuno] = [Test_ncyu_dev].[dbo].[selpaper].[stuno] WHERE [Test_ncyu_dev].[dbo].[stufile].[stuno] = '{StudentId}'";
+                cmd = $"SELECT [ename], [cname], [birthday], [entrym], [degrenam], [graddat], [deptenam], [colenam], [scoavg], [accrgcrd], [clspgnsort], [allman], [accgpa], [selpaper].[score] FROM [stufile] LEFT JOIN [sclperson] ON [stufile].[idno] = [sclperson].[idno] LEFT JOIN [pubsec] ON [stufile].[deptno] = [pubsec].[deptno] LEFT JOIN [pubdep] ON [stufile].[deptno] = [pubdep].[deptno] LEFT JOIN [pubcol] ON [pubcol].[colno] = [pubdep].[colno] LEFT JOIN [selstugracrd] ON [stufile].[stuno] = [selstugracrd].[stuno] LEFT JOIN [selpaper] ON [stufile].[stuno] = [selpaper].[stuno] WHERE [stufile].[stuno] = '{StudentId}'";
                 using (SqlCommand command = new SqlCommand(cmd, connection))
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
@@ -112,12 +136,12 @@ namespace Transcript.Models
                             decimal rank = 0;
                             decimal allman = 0;
                             decimal thesis = 0;
-                            if (acad == 3) {
+                            if (acad == 3 || acad == 4 || acad == 6) {
                                 credits = reader.IsDBNull(9) ? 0 : reader.GetDecimal(9);
                                 rank = reader.IsDBNull(10) ? 0 : reader.GetDecimal(10);
                                 allman = reader.IsDBNull(11) ? 0 : reader.GetDecimal(11);
                             }
-                            if(acad == 2)
+                            if(acad == 1 || acad == 2 || acad == 5)
                             {
                                 thesis = reader.IsDBNull(13) ? 0 : reader.GetDecimal(13);
                             }
