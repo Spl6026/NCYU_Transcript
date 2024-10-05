@@ -1,0 +1,162 @@
+[
+  {
+    "ContainingType": "Calculate.Controllers.CalculateController",
+    "Method": "Post",
+    "RelativePath": "api/Calculate",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "data",
+        "Type": "Calculate.Models.JSON",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Transcript.Controllers.GenerateController",
+    "Method": "eng",
+    "RelativePath": "api/Generate/eng",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "data",
+        "Type": "Transcript.Models.Transcript_JSON",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Transcript.Controllers.GenerateController",
+    "Method": "inform",
+    "RelativePath": "api/Generate/inform",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "data",
+        "Type": "Transcript.Models.Transcript_JSON",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Pub.Controllers.PubController",
+    "Method": "acad",
+    "RelativePath": "api/Pub/acad",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "data",
+        "Type": "Pub.Models.Select_JSON",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Pub.Controllers.PubController",
+    "Method": "check",
+    "RelativePath": "api/Pub/check",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "data",
+        "Type": "Pub.Models.Pub_JSON",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Pub.Controllers.PubController",
+    "Method": "date",
+    "RelativePath": "api/Pub/date",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "data",
+        "Type": "Pub.Models.Stu_JSON",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Pub.Controllers.PubController",
+    "Method": "dept",
+    "RelativePath": "api/Pub/dept",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "data",
+        "Type": "Pub.Models.Range_JSON",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Pub.Controllers.PubController",
+    "Method": "range",
+    "RelativePath": "api/Pub/range",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "data",
+        "Type": "Pub.Models.Range_JSON",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Pub.Controllers.PubController",
+    "Method": "sec",
+    "RelativePath": "api/Pub/sec",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "data",
+        "Type": "Pub.Models.Select_JSON",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Pub.Controllers.PubController",
+    "Method": "stu",
+    "RelativePath": "api/Pub/stu",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "data",
+        "Type": "Pub.Models.Stu_JSON",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

@@ -1,0 +1,309 @@
+{
+  "ContentRoots": [
+    "/mnt/c/Users/Spl/Desktop/fastreport_project/iis_setting/Transcript_dotnet/wwwroot/"
+  ],
+  "Root": {
+    "Children": {
+      "inform": {
+        "Children": {
+          "asset-manifest.json": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "inform/asset-manifest.json"
+            },
+            "Patterns": null
+          },
+          "env.js": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "inform/env.js"
+            },
+            "Patterns": null
+          },
+          "favicon.ico": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "inform/favicon.ico"
+            },
+            "Patterns": null
+          },
+          "index.html": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "inform/index.html"
+            },
+            "Patterns": null
+          },
+          "logo192.png": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "inform/logo192.png"
+            },
+            "Patterns": null
+          },
+          "logo512.png": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "inform/logo512.png"
+            },
+            "Patterns": null
+          },
+          "manifest.json": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "inform/manifest.json"
+            },
+            "Patterns": null
+          },
+          "robots.txt": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "inform/robots.txt"
+            },
+            "Patterns": null
+          },
+          "static": {
+            "Children": {
+              "css": {
+                "Children": {
+                  "main.59a202d7.css": {
+                    "Children": null,
+                    "Asset": {
+                      "ContentRootIndex": 0,
+                      "SubPath": "inform/static/css/main.59a202d7.css"
+                    },
+                    "Patterns": null
+                  },
+                  "main.59a202d7.css.map": {
+                    "Children": null,
+                    "Asset": {
+                      "ContentRootIndex": 0,
+                      "SubPath": "inform/static/css/main.59a202d7.css.map"
+                    },
+                    "Patterns": null
+                  }
+                },
+                "Asset": null,
+                "Patterns": null
+              },
+              "js": {
+                "Children": {
+                  "main.76bfa401.js": {
+                    "Children": null,
+                    "Asset": {
+                      "ContentRootIndex": 0,
+                      "SubPath": "inform/static/js/main.76bfa401.js"
+                    },
+                    "Patterns": null
+                  },
+                  "main.76bfa401.js.LICENSE.txt": {
+                    "Children": null,
+                    "Asset": {
+                      "ContentRootIndex": 0,
+                      "SubPath": "inform/static/js/main.76bfa401.js.LICENSE.txt"
+                    },
+                    "Patterns": null
+                  },
+                  "main.76bfa401.js.map": {
+                    "Children": null,
+                    "Asset": {
+                      "ContentRootIndex": 0,
+                      "SubPath": "inform/static/js/main.76bfa401.js.map"
+                    },
+                    "Patterns": null
+                  }
+                },
+                "Asset": null,
+                "Patterns": null
+              }
+            },
+            "Asset": null,
+            "Patterns": null
+          }
+        },
+        "Asset": null,
+        "Patterns": null
+      },
+      "inform_button": {
+        "Children": {
+          "button.js": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "inform_button/button.js"
+            },
+            "Patterns": null
+          },
+          "index.html": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "inform_button/index.html"
+            },
+            "Patterns": null
+          }
+        },
+        "Asset": null,
+        "Patterns": null
+      },
+      "transcript_frontend": {
+        "Children": {
+          "asset-manifest.json": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "transcript_frontend/asset-manifest.json"
+            },
+            "Patterns": null
+          },
+          "env.js": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "transcript_frontend/env.js"
+            },
+            "Patterns": null
+          },
+          "favicon.ico": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "transcript_frontend/favicon.ico"
+            },
+            "Patterns": null
+          },
+          "index.html": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "transcript_frontend/index.html"
+            },
+            "Patterns": null
+          },
+          "logo192.png": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "transcript_frontend/logo192.png"
+            },
+            "Patterns": null
+          },
+          "logo512.png": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "transcript_frontend/logo512.png"
+            },
+            "Patterns": null
+          },
+          "manifest.json": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "transcript_frontend/manifest.json"
+            },
+            "Patterns": null
+          },
+          "robots.txt": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "transcript_frontend/robots.txt"
+            },
+            "Patterns": null
+          },
+          "static": {
+            "Children": {
+              "css": {
+                "Children": {
+                  "main.cbc512fe.css": {
+                    "Children": null,
+                    "Asset": {
+                      "ContentRootIndex": 0,
+                      "SubPath": "transcript_frontend/static/css/main.cbc512fe.css"
+                    },
+                    "Patterns": null
+                  },
+                  "main.cbc512fe.css.map": {
+                    "Children": null,
+                    "Asset": {
+                      "ContentRootIndex": 0,
+                      "SubPath": "transcript_frontend/static/css/main.cbc512fe.css.map"
+                    },
+                    "Patterns": null
+                  }
+                },
+                "Asset": null,
+                "Patterns": null
+              },
+              "js": {
+                "Children": {
+                  "main.0a887444.js": {
+                    "Children": null,
+                    "Asset": {
+                      "ContentRootIndex": 0,
+                      "SubPath": "transcript_frontend/static/js/main.0a887444.js"
+                    },
+                    "Patterns": null
+                  },
+                  "main.0a887444.js.LICENSE.txt": {
+                    "Children": null,
+                    "Asset": {
+                      "ContentRootIndex": 0,
+                      "SubPath": "transcript_frontend/static/js/main.0a887444.js.LICENSE.txt"
+                    },
+                    "Patterns": null
+                  },
+                  "main.0a887444.js.map": {
+                    "Children": null,
+                    "Asset": {
+                      "ContentRootIndex": 0,
+                      "SubPath": "transcript_frontend/static/js/main.0a887444.js.map"
+                    },
+                    "Patterns": null
+                  }
+                },
+                "Asset": null,
+                "Patterns": null
+              },
+              "media": {
+                "Children": {
+                  "logo.5fe018e415fbfd3865aa.png": {
+                    "Children": null,
+                    "Asset": {
+                      "ContentRootIndex": 0,
+                      "SubPath": "transcript_frontend/static/media/logo.5fe018e415fbfd3865aa.png"
+                    },
+                    "Patterns": null
+                  }
+                },
+                "Asset": null,
+                "Patterns": null
+              }
+            },
+            "Asset": null,
+            "Patterns": null
+          }
+        },
+        "Asset": null,
+        "Patterns": null
+      }
+    },
+    "Asset": null,
+    "Patterns": [
+      {
+        "ContentRootIndex": 0,
+        "Pattern": "**",
+        "Depth": 0
+      }
+    ]
+  }
+}

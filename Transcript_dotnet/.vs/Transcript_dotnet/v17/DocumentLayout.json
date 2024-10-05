@@ -1,0 +1,263 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\vboxuser\\Desktop\\test\\Transcript_dotnet\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5166DEEA-1423-41B6-83A6-88504474DB66}|Transcript_dotnet.csproj|c:\\users\\vboxuser\\desktop\\test\\transcript_dotnet\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5166DEEA-1423-41B6-83A6-88504474DB66}|Transcript_dotnet.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5166DEEA-1423-41B6-83A6-88504474DB66}|Transcript_dotnet.csproj|c:\\users\\vboxuser\\desktop\\test\\transcript_dotnet\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{5166DEEA-1423-41B6-83A6-88504474DB66}|Transcript_dotnet.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5166DEEA-1423-41B6-83A6-88504474DB66}|Transcript_dotnet.csproj|c:\\users\\vboxuser\\desktop\\test\\transcript_dotnet\\controllers\\generatecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5166DEEA-1423-41B6-83A6-88504474DB66}|Transcript_dotnet.csproj|solutionrelative:controllers\\generatecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5166DEEA-1423-41B6-83A6-88504474DB66}|Transcript_dotnet.csproj|c:\\users\\vboxuser\\desktop\\test\\transcript_dotnet\\models\\transcript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5166DEEA-1423-41B6-83A6-88504474DB66}|Transcript_dotnet.csproj|solutionrelative:models\\transcript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5166DEEA-1423-41B6-83A6-88504474DB66}|Transcript_dotnet.csproj|c:\\users\\vboxuser\\desktop\\test\\transcript_dotnet\\models\\verify.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5166DEEA-1423-41B6-83A6-88504474DB66}|Transcript_dotnet.csproj|solutionrelative:models\\verify.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5166DEEA-1423-41B6-83A6-88504474DB66}|Transcript_dotnet.csproj|c:\\users\\vboxuser\\desktop\\test\\transcript_dotnet\\models\\calculate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5166DEEA-1423-41B6-83A6-88504474DB66}|Transcript_dotnet.csproj|solutionrelative:models\\calculate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5166DEEA-1423-41B6-83A6-88504474DB66}|Transcript_dotnet.csproj|c:\\users\\vboxuser\\desktop\\test\\transcript_dotnet\\models\\pub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5166DEEA-1423-41B6-83A6-88504474DB66}|Transcript_dotnet.csproj|solutionrelative:models\\pub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5166DEEA-1423-41B6-83A6-88504474DB66}|Transcript_dotnet.csproj|c:\\users\\vboxuser\\desktop\\test\\transcript_dotnet\\models\\selstugracrd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5166DEEA-1423-41B6-83A6-88504474DB66}|Transcript_dotnet.csproj|solutionrelative:models\\selstugracrd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5166DEEA-1423-41B6-83A6-88504474DB66}|Transcript_dotnet.csproj|c:\\users\\vboxuser\\desktop\\test\\transcript_dotnet\\controllers\\pubcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5166DEEA-1423-41B6-83A6-88504474DB66}|Transcript_dotnet.csproj|solutionrelative:controllers\\pubcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5166DEEA-1423-41B6-83A6-88504474DB66}|Transcript_dotnet.csproj|c:\\users\\vboxuser\\desktop\\test\\transcript_dotnet\\models\\selstchf.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5166DEEA-1423-41B6-83A6-88504474DB66}|Transcript_dotnet.csproj|solutionrelative:models\\selstchf.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5166DEEA-1423-41B6-83A6-88504474DB66}|Transcript_dotnet.csproj|c:\\users\\vboxuser\\desktop\\test\\transcript_dotnet\\models\\info.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5166DEEA-1423-41B6-83A6-88504474DB66}|Transcript_dotnet.csproj|solutionrelative:models\\info.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5166DEEA-1423-41B6-83A6-88504474DB66}|Transcript_dotnet.csproj|c:\\users\\vboxuser\\desktop\\test\\transcript_dotnet\\models\\initial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5166DEEA-1423-41B6-83A6-88504474DB66}|Transcript_dotnet.csproj|solutionrelative:models\\initial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5166DEEA-1423-41B6-83A6-88504474DB66}|Transcript_dotnet.csproj|c:\\users\\vboxuser\\desktop\\test\\transcript_dotnet\\models\\database.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5166DEEA-1423-41B6-83A6-88504474DB66}|Transcript_dotnet.csproj|solutionrelative:models\\database.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5166DEEA-1423-41B6-83A6-88504474DB66}|Transcript_dotnet.csproj|c:\\users\\vboxuser\\desktop\\test\\transcript_dotnet\\controllers\\calculatecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5166DEEA-1423-41B6-83A6-88504474DB66}|Transcript_dotnet.csproj|solutionrelative:controllers\\calculatecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5166DEEA-1423-41B6-83A6-88504474DB66}|Transcript_dotnet.csproj|c:\\users\\vboxuser\\desktop\\test\\transcript_dotnet\\transcript_dotnet.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{5166DEEA-1423-41B6-83A6-88504474DB66}|Transcript_dotnet.csproj|solutionrelative:transcript_dotnet.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 11,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Selstugracrd.cs",
+              "DocumentMoniker": "C:\\Users\\vboxuser\\Desktop\\test\\Transcript_dotnet\\Models\\Selstugracrd.cs",
+              "RelativeDocumentMoniker": "Models\\Selstugracrd.cs",
+              "ToolTip": "C:\\Users\\vboxuser\\Desktop\\test\\Transcript_dotnet\\Models\\Selstugracrd.cs",
+              "RelativeToolTip": "Models\\Selstugracrd.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-07T05:31:16.506Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Selstchf.cs",
+              "DocumentMoniker": "C:\\Users\\vboxuser\\Desktop\\test\\Transcript_dotnet\\Models\\Selstchf.cs",
+              "RelativeDocumentMoniker": "Models\\Selstchf.cs",
+              "ToolTip": "C:\\Users\\vboxuser\\Desktop\\test\\Transcript_dotnet\\Models\\Selstchf.cs",
+              "RelativeToolTip": "Models\\Selstchf.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-07T05:31:16.507Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Pub.cs",
+              "DocumentMoniker": "C:\\Users\\vboxuser\\Desktop\\test\\Transcript_dotnet\\Models\\Pub.cs",
+              "RelativeDocumentMoniker": "Models\\Pub.cs",
+              "ToolTip": "C:\\Users\\vboxuser\\Desktop\\test\\Transcript_dotnet\\Models\\Pub.cs",
+              "RelativeToolTip": "Models\\Pub.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-07T05:31:16.509Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "PubController.cs",
+              "DocumentMoniker": "C:\\Users\\vboxuser\\Desktop\\test\\Transcript_dotnet\\Controllers\\PubController.cs",
+              "RelativeDocumentMoniker": "Controllers\\PubController.cs",
+              "ToolTip": "C:\\Users\\vboxuser\\Desktop\\test\\Transcript_dotnet\\Controllers\\PubController.cs",
+              "RelativeToolTip": "Controllers\\PubController.cs",
+              "ViewState": "AQIAAB0AAAAAAAAAAAAewCkAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-07T05:31:16.511Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Info.cs",
+              "DocumentMoniker": "C:\\Users\\vboxuser\\Desktop\\test\\Transcript_dotnet\\Models\\Info.cs",
+              "RelativeDocumentMoniker": "Models\\Info.cs",
+              "ToolTip": "C:\\Users\\vboxuser\\Desktop\\test\\Transcript_dotnet\\Models\\Info.cs",
+              "RelativeToolTip": "Models\\Info.cs",
+              "ViewState": "AQIAACsAAAAAAAAAAIBJwDkAAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-07T05:31:16.512Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "DataBase.cs",
+              "DocumentMoniker": "C:\\Users\\vboxuser\\Desktop\\test\\Transcript_dotnet\\Models\\DataBase.cs",
+              "RelativeDocumentMoniker": "Models\\DataBase.cs",
+              "ToolTip": "C:\\Users\\vboxuser\\Desktop\\test\\Transcript_dotnet\\Models\\DataBase.cs",
+              "RelativeToolTip": "Models\\DataBase.cs",
+              "ViewState": "AQIAADMAAAAAAAAAAIBJwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-07T05:31:16.514Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GenerateController.cs",
+              "DocumentMoniker": "C:\\Users\\vboxuser\\Desktop\\test\\Transcript_dotnet\\Controllers\\GenerateController.cs",
+              "RelativeDocumentMoniker": "Controllers\\GenerateController.cs",
+              "ToolTip": "C:\\Users\\vboxuser\\Desktop\\test\\Transcript_dotnet\\Controllers\\GenerateController.cs",
+              "RelativeToolTip": "Controllers\\GenerateController.cs",
+              "ViewState": "AQIAAEMAAAAAAAAAAAAswEgAAAA+AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-07T05:31:16.515Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Initial.cs",
+              "DocumentMoniker": "C:\\Users\\vboxuser\\Desktop\\test\\Transcript_dotnet\\Models\\Initial.cs",
+              "RelativeDocumentMoniker": "Models\\Initial.cs",
+              "ToolTip": "C:\\Users\\vboxuser\\Desktop\\test\\Transcript_dotnet\\Models\\Initial.cs",
+              "RelativeToolTip": "Models\\Initial.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-07T05:31:16.516Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Calculate.cs",
+              "DocumentMoniker": "C:\\Users\\vboxuser\\Desktop\\test\\Transcript_dotnet\\Models\\Calculate.cs",
+              "RelativeDocumentMoniker": "Models\\Calculate.cs",
+              "ToolTip": "C:\\Users\\vboxuser\\Desktop\\test\\Transcript_dotnet\\Models\\Calculate.cs",
+              "RelativeToolTip": "Models\\Calculate.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-07T05:31:16.519Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Verify.cs",
+              "DocumentMoniker": "C:\\Users\\vboxuser\\Desktop\\test\\Transcript_dotnet\\Models\\Verify.cs",
+              "RelativeDocumentMoniker": "Models\\Verify.cs",
+              "ToolTip": "C:\\Users\\vboxuser\\Desktop\\test\\Transcript_dotnet\\Models\\Verify.cs",
+              "RelativeToolTip": "Models\\Verify.cs",
+              "ViewState": "AQIAADAAAAAAAAAAAAAAAEAAAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-07T05:31:16.52Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\vboxuser\\Desktop\\test\\Transcript_dotnet\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\vboxuser\\Desktop\\test\\Transcript_dotnet\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-03-07T05:31:16.522Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\vboxuser\\Desktop\\test\\Transcript_dotnet\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\vboxuser\\Desktop\\test\\Transcript_dotnet\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-07T05:31:16.353Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Transcript.cs",
+              "DocumentMoniker": "C:\\Users\\vboxuser\\Desktop\\test\\Transcript_dotnet\\Models\\Transcript.cs",
+              "RelativeDocumentMoniker": "Models\\Transcript.cs",
+              "ToolTip": "C:\\Users\\vboxuser\\Desktop\\test\\Transcript_dotnet\\Models\\Transcript.cs",
+              "RelativeToolTip": "Models\\Transcript.cs",
+              "ViewState": "AQIAAC4AAAAAAAAAAIA2wEkAAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-07T05:31:16.503Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "CalculateController.cs",
+              "DocumentMoniker": "C:\\Users\\vboxuser\\Desktop\\test\\Transcript_dotnet\\Controllers\\CalculateController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CalculateController.cs",
+              "ToolTip": "C:\\Users\\vboxuser\\Desktop\\test\\Transcript_dotnet\\Controllers\\CalculateController.cs",
+              "RelativeToolTip": "Controllers\\CalculateController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-07T05:31:16.523Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Transcript_dotnet.csproj",
+              "DocumentMoniker": "C:\\Users\\vboxuser\\Desktop\\test\\Transcript_dotnet\\Transcript_dotnet.csproj",
+              "RelativeDocumentMoniker": "Transcript_dotnet.csproj",
+              "ToolTip": "C:\\Users\\vboxuser\\Desktop\\test\\Transcript_dotnet\\Transcript_dotnet.csproj",
+              "RelativeToolTip": "Transcript_dotnet.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-03-07T05:31:16.529Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

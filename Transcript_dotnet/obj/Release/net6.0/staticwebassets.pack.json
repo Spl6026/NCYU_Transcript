@@ -1,0 +1,137 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Spl\\Desktop\\fastreport_project\\iis_setting\\Transcript_dotnet\\wwwroot\\inform\\asset-manifest.json",
+      "PackagePath": "staticwebassets\\inform\\asset-manifest.json"
+    },
+    {
+      "Id": "C:\\Users\\Spl\\Desktop\\fastreport_project\\iis_setting\\Transcript_dotnet\\wwwroot\\inform\\env.js",
+      "PackagePath": "staticwebassets\\inform\\env.js"
+    },
+    {
+      "Id": "C:\\Users\\Spl\\Desktop\\fastreport_project\\iis_setting\\Transcript_dotnet\\wwwroot\\inform\\favicon.ico",
+      "PackagePath": "staticwebassets\\inform\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\Spl\\Desktop\\fastreport_project\\iis_setting\\Transcript_dotnet\\wwwroot\\inform\\index.html",
+      "PackagePath": "staticwebassets\\inform\\index.html"
+    },
+    {
+      "Id": "C:\\Users\\Spl\\Desktop\\fastreport_project\\iis_setting\\Transcript_dotnet\\wwwroot\\inform\\logo192.png",
+      "PackagePath": "staticwebassets\\inform\\logo192.png"
+    },
+    {
+      "Id": "C:\\Users\\Spl\\Desktop\\fastreport_project\\iis_setting\\Transcript_dotnet\\wwwroot\\inform\\logo512.png",
+      "PackagePath": "staticwebassets\\inform\\logo512.png"
+    },
+    {
+      "Id": "C:\\Users\\Spl\\Desktop\\fastreport_project\\iis_setting\\Transcript_dotnet\\wwwroot\\inform\\manifest.json",
+      "PackagePath": "staticwebassets\\inform\\manifest.json"
+    },
+    {
+      "Id": "C:\\Users\\Spl\\Desktop\\fastreport_project\\iis_setting\\Transcript_dotnet\\wwwroot\\inform\\robots.txt",
+      "PackagePath": "staticwebassets\\inform\\robots.txt"
+    },
+    {
+      "Id": "C:\\Users\\Spl\\Desktop\\fastreport_project\\iis_setting\\Transcript_dotnet\\wwwroot\\inform\\static\\css\\main.59a202d7.css",
+      "PackagePath": "staticwebassets\\inform\\static\\css\\main.59a202d7.css"
+    },
+    {
+      "Id": "C:\\Users\\Spl\\Desktop\\fastreport_project\\iis_setting\\Transcript_dotnet\\wwwroot\\inform\\static\\css\\main.59a202d7.css.map",
+      "PackagePath": "staticwebassets\\inform\\static\\css\\main.59a202d7.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Spl\\Desktop\\fastreport_project\\iis_setting\\Transcript_dotnet\\wwwroot\\inform\\static\\js\\main.76bfa401.js",
+      "PackagePath": "staticwebassets\\inform\\static\\js\\main.76bfa401.js"
+    },
+    {
+      "Id": "C:\\Users\\Spl\\Desktop\\fastreport_project\\iis_setting\\Transcript_dotnet\\wwwroot\\inform\\static\\js\\main.76bfa401.js.LICENSE.txt",
+      "PackagePath": "staticwebassets\\inform\\static\\js\\main.76bfa401.js.LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Users\\Spl\\Desktop\\fastreport_project\\iis_setting\\Transcript_dotnet\\wwwroot\\inform\\static\\js\\main.76bfa401.js.map",
+      "PackagePath": "staticwebassets\\inform\\static\\js\\main.76bfa401.js.map"
+    },
+    {
+      "Id": "C:\\Users\\Spl\\Desktop\\fastreport_project\\iis_setting\\Transcript_dotnet\\wwwroot\\inform_button\\button.js",
+      "PackagePath": "staticwebassets\\inform_button\\button.js"
+    },
+    {
+      "Id": "C:\\Users\\Spl\\Desktop\\fastreport_project\\iis_setting\\Transcript_dotnet\\wwwroot\\inform_button\\index.html",
+      "PackagePath": "staticwebassets\\inform_button\\index.html"
+    },
+    {
+      "Id": "C:\\Users\\Spl\\Desktop\\fastreport_project\\iis_setting\\Transcript_dotnet\\wwwroot\\transen\\asset-manifest.json",
+      "PackagePath": "staticwebassets\\transen\\asset-manifest.json"
+    },
+    {
+      "Id": "C:\\Users\\Spl\\Desktop\\fastreport_project\\iis_setting\\Transcript_dotnet\\wwwroot\\transen\\env.js",
+      "PackagePath": "staticwebassets\\transen\\env.js"
+    },
+    {
+      "Id": "C:\\Users\\Spl\\Desktop\\fastreport_project\\iis_setting\\Transcript_dotnet\\wwwroot\\transen\\favicon.ico",
+      "PackagePath": "staticwebassets\\transen\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\Spl\\Desktop\\fastreport_project\\iis_setting\\Transcript_dotnet\\wwwroot\\transen\\index.html",
+      "PackagePath": "staticwebassets\\transen\\index.html"
+    },
+    {
+      "Id": "C:\\Users\\Spl\\Desktop\\fastreport_project\\iis_setting\\Transcript_dotnet\\wwwroot\\transen\\logo192.png",
+      "PackagePath": "staticwebassets\\transen\\logo192.png"
+    },
+    {
+      "Id": "C:\\Users\\Spl\\Desktop\\fastreport_project\\iis_setting\\Transcript_dotnet\\wwwroot\\transen\\logo512.png",
+      "PackagePath": "staticwebassets\\transen\\logo512.png"
+    },
+    {
+      "Id": "C:\\Users\\Spl\\Desktop\\fastreport_project\\iis_setting\\Transcript_dotnet\\wwwroot\\transen\\manifest.json",
+      "PackagePath": "staticwebassets\\transen\\manifest.json"
+    },
+    {
+      "Id": "C:\\Users\\Spl\\Desktop\\fastreport_project\\iis_setting\\Transcript_dotnet\\wwwroot\\transen\\robots.txt",
+      "PackagePath": "staticwebassets\\transen\\robots.txt"
+    },
+    {
+      "Id": "C:\\Users\\Spl\\Desktop\\fastreport_project\\iis_setting\\Transcript_dotnet\\wwwroot\\transen\\static\\css\\main.cbc512fe.css",
+      "PackagePath": "staticwebassets\\transen\\static\\css\\main.cbc512fe.css"
+    },
+    {
+      "Id": "C:\\Users\\Spl\\Desktop\\fastreport_project\\iis_setting\\Transcript_dotnet\\wwwroot\\transen\\static\\css\\main.cbc512fe.css.map",
+      "PackagePath": "staticwebassets\\transen\\static\\css\\main.cbc512fe.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Spl\\Desktop\\fastreport_project\\iis_setting\\Transcript_dotnet\\wwwroot\\transen\\static\\js\\main.0a887444.js",
+      "PackagePath": "staticwebassets\\transen\\static\\js\\main.0a887444.js"
+    },
+    {
+      "Id": "C:\\Users\\Spl\\Desktop\\fastreport_project\\iis_setting\\Transcript_dotnet\\wwwroot\\transen\\static\\js\\main.0a887444.js.LICENSE.txt",
+      "PackagePath": "staticwebassets\\transen\\static\\js\\main.0a887444.js.LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Users\\Spl\\Desktop\\fastreport_project\\iis_setting\\Transcript_dotnet\\wwwroot\\transen\\static\\js\\main.0a887444.js.map",
+      "PackagePath": "staticwebassets\\transen\\static\\js\\main.0a887444.js.map"
+    },
+    {
+      "Id": "C:\\Users\\Spl\\Desktop\\fastreport_project\\iis_setting\\Transcript_dotnet\\wwwroot\\transen\\static\\media\\logo.5fe018e415fbfd3865aa.png",
+      "PackagePath": "staticwebassets\\transen\\static\\media\\logo.5fe018e415fbfd3865aa.png"
+    },
+    {
+      "Id": "obj\\Release\\net6.0\\staticwebassets\\msbuild.Transcript_dotnet.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Release\\net6.0\\staticwebassets\\msbuild.build.Transcript_dotnet.props",
+      "PackagePath": "build\\Transcript_dotnet.props"
+    },
+    {
+      "Id": "obj\\Release\\net6.0\\staticwebassets\\msbuild.buildMultiTargeting.Transcript_dotnet.props",
+      "PackagePath": "buildMultiTargeting\\Transcript_dotnet.props"
+    },
+    {
+      "Id": "obj\\Release\\net6.0\\staticwebassets\\msbuild.buildTransitive.Transcript_dotnet.props",
+      "PackagePath": "buildTransitive\\Transcript_dotnet.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
