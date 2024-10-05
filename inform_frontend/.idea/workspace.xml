@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7f362dfc-1637-4008-8d94-46c82b9559ca" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="tsconfig.json" />
+        <option value="JavaScript File" />
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2ZB5x8SkVwUAlxbZexRCc9XihDu" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Spl/Desktop/arduino/frontend&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;C:/Users/Spl/AppData/Roaming/JetBrains/PhpStorm2023.2/node/node-v18.15.0-win-x64/node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="js.build_tools.npm" />
+      </set>
+    </option>
+    <option name="openRunningConfigInTab" value="true" />
+  </component>
+  <component name="RunManager" selected="npm.npm start">
+    <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
+      <method v="2" />
+    </configuration>
+    <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
+      <method v="2" />
+    </configuration>
+    <configuration name="npm start" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="start" />
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="npm start" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="start" />
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-PS-241.18034.69" />
+        <option value="bundled-php-predefined-ba97393d7c68-48a1a656d44e-com.jetbrains.php.sharedIndexes-PS-241.18034.69" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7f362dfc-1637-4008-8d94-46c82b9559ca" name="Changes" comment="" />
+      <created>1701882875183</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1701882875183</updated>
+      <workItem from="1701882876214" duration="399000" />
+      <workItem from="1701958801865" duration="10000" />
+      <workItem from="1701965668332" duration="5971000" />
+      <workItem from="1701971797201" duration="97000" />
+      <workItem from="1702048878812" duration="50000" />
+      <workItem from="1702057673234" duration="2177000" />
+      <workItem from="1702095175979" duration="2794000" />
+      <workItem from="1702102258145" duration="15385000" />
+      <workItem from="1702132729067" duration="2422000" />
+      <workItem from="1702140228641" duration="335000" />
+      <workItem from="1702144149939" duration="2088000" />
+      <workItem from="1702182057110" duration="3090000" />
+      <workItem from="1702268470763" duration="1215000" />
+      <workItem from="1702269815648" duration="55000" />
+      <workItem from="1702288084654" duration="2048000" />
+      <workItem from="1702291501151" duration="110000" />
+      <workItem from="1702291859275" duration="10000" />
+      <workItem from="1702293878495" duration="934000" />
+      <workItem from="1702308719330" duration="1131000" />
+      <workItem from="1702461809369" duration="1866000" />
+      <workItem from="1702551970932" duration="1693000" />
+      <workItem from="1702813647314" duration="26000" />
+      <workItem from="1702823331417" duration="6246000" />
+      <workItem from="1702978922506" duration="1005000" />
+      <workItem from="1705396772635" duration="1262000" />
+      <workItem from="1705555662920" duration="4739000" />
+      <workItem from="1705575502833" duration="4782000" />
+      <workItem from="1705629738050" duration="3717000" />
+      <workItem from="1705653841258" duration="629000" />
+      <workItem from="1705671644817" duration="3695000" />
+      <workItem from="1706686008132" duration="958000" />
+      <workItem from="1706771657058" duration="243000" />
+      <workItem from="1708317200367" duration="163000" />
+      <workItem from="1708317421383" duration="19000" />
+      <workItem from="1708317746915" duration="772000" />
+      <workItem from="1708411765168" duration="6400000" />
+      <workItem from="1708423447739" duration="610000" />
+      <workItem from="1708426208418" duration="98000" />
+      <workItem from="1709545599280" duration="1122000" />
+      <workItem from="1709574601237" duration="50000" />
+      <workItem from="1709574836600" duration="342000" />
+      <workItem from="1709575448894" duration="16000" />
+      <workItem from="1709792509543" duration="404000" />
+      <workItem from="1709808942753" duration="28000" />
+      <workItem from="1709809651189" duration="43000" />
+      <workItem from="1710150055008" duration="36000" />
+      <workItem from="1710737122275" duration="305000" />
+      <workItem from="1710766022027" duration="718000" />
+      <workItem from="1711123244899" duration="607000" />
+      <workItem from="1711173539863" duration="19000" />
+      <workItem from="1711206307296" duration="158000" />
+      <workItem from="1711349988905" duration="3429000" />
+      <workItem from="1711355915150" duration="306000" />
+      <workItem from="1711356427961" duration="55000" />
+      <workItem from="1712591134489" duration="13000" />
+      <workItem from="1728141963257" duration="30000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
